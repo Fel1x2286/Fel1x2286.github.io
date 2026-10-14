@@ -557,101 +557,170 @@
         .btn-blue { background: #0072ff; }
         .btn-red { background: #ff4757; }
 /* ========================================================== */
-/* АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА И ТЕЛЕФОНЫ           */
+/* СУПЕР КОМПАКТНЫЙ РЕЖИМ ДЛЯ ТЕЛЕФОНОВ                     */
 /* ========================================================== */
 @media screen and (max-width: 768px) {
     body {
-        padding: 10px;
+        padding: 4px;
+        justify-content: flex-start;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* Уменьшаем шапку */
+    .header {
+        margin-top: 2px;
+        margin-bottom: 6px;
     }
 
     .header h1 {
-        font-size: 32px;
+        font-size: 26px;
         letter-spacing: 1px;
+        margin-bottom: 0;
     }
 
     .header-bg-number {
-        font-size: 75px;
+        font-size: 55px;
+        top: 50%;
     }
 
-    /* Растягиваем рулетку по ширине экрана телефона */
-    .case-window {
-        width: 100% !important;
-        max-width: 100%;
-        height: 140px;
-        border-radius: 16px;
+    .header p {
+        font-size: 9px;
+        letter-spacing: 1px;
     }
 
-    .card {
-        min-width: 95px;
-        height: 140px;
-    }
-
-    .card img {
-        width: 55px;
-        height: 55px;
-    }
-
-    /* Панель статуса (монеты и удача) в колонку или компактно */
+    /* Статус-бар (монеты и удача) в одну строчку */
     .status-bar {
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
+        gap: 6px;
+        margin-bottom: 6px;
     }
 
     .coins-display, .luck-boost-btn, .luck-active-badge {
-        width: 100%;
-        text-align: center;
-        padding: 8px 12px;
-        font-size: 13px;
+        padding: 4px 10px;
+        font-size: 11px;
     }
 
-    /* Кнопки меню друг под другом на всю ширину экрана */
+    /* Компактная рулетка */
+    .case-window {
+        width: 100% !important;
+        max-width: 100%;
+        height: 115px;
+        margin-bottom: 8px;
+        border-radius: 12px;
+    }
+
+    .card {
+        min-width: 80px;
+        height: 115px;
+        padding: 4px 2px;
+    }
+
+    .card img {
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+    }
+
+    .card span.card-name {
+        font-size: 8px;
+        max-height: 26px;
+        line-height: 1;
+    }
+
+    .rarity-tag {
+        font-size: 6px;
+        padding: 1px 4px;
+    }
+
+    /* Кнопки меню в сетку 2х3, чтобы занимали минимум места */
     .controls {
-        flex-direction: column;
-        gap: 8px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
         width: 100%;
-    }
-
-    .btn {
-        width: 100%;
-        padding: 12px;
-        font-size: 13px;
-        text-align: center;
+        margin-bottom: 5px;
     }
 
     .spin-btn {
-        font-size: 15px;
-        padding: 14px;
+        grid-column: span 2; /* Крутить на всю ширину сверху */
+        padding: 10px;
+        font-size: 14px;
     }
 
-    /* Модальные окна на весь экран смартфона с отступами */
+    .btn {
+        padding: 8px 10px;
+        font-size: 11px;
+        border-radius: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Модальные окна на весь экран, но с мелкими отступами */
     .modal {
-        padding: 5px;
+        padding: 2px;
     }
 
     .modal-content {
         width: 100% !important;
         max-width: 100% !important;
-        height: 92vh;
-        max-height: 92vh;
-        padding: 15px 10px;
-        border-radius: 16px;
+        height: 96vh;
+        max-height: 96vh;
+        padding: 10px 6px;
+        border-radius: 12px;
     }
 
-    /* Сетка в коллекции и достижениях — по 2 колонки вместо 4 на ПК */
+    .modal-header {
+        margin-bottom: 6px;
+    }
+
+    .modal-header h2 {
+        font-size: 16px;
+    }
+
+    .close-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+
+    /* Сетка предметов и ачивок — по 3 штуки в ряд на телефоне */
     .collection-grid, .achievements-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px;
     }
 
     .collection-item {
-        height: 160px;
-        padding: 8px 6px;
+        height: 130px;
+        padding: 6px 4px;
+        border-radius: 10px;
     }
 
     .collection-item img {
-        width: 55px;
-        height: 55px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .lock-icon {
+        font-size: 26px;
+        margin: 8px 0;
+    }
+
+    .achievement-card {
+        min-height: 105px;
+        padding: 6px 4px;
+        border-radius: 10px;
+    }
+
+    .ach-icon {
+        font-size: 22px;
+        margin-bottom: 2px;
+    }
+
+    .ach-title {
+        font-size: 10px;
+    }
+
+    .ach-desc {
+        font-size: 8px;
     }
 }
     </style>
