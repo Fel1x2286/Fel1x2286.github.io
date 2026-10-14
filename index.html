@@ -2,1242 +2,1243 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUBA DROP</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <title>BUBA DROP 2</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
         :root {
-            --bg-color: #06070a;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #2e1a53 0%, #06070a 80%);
-            --panel-bg: rgba(22, 24, 38, 0.75);
-            --border-color: rgba(255, 255, 255, 0.1);
-            --accent-color: #00dfd8;
-            --text-color: #ffffff;
-            --glow-color: rgba(0, 223, 216, 0.4);
-        }
-
-        body.theme-rare {
-            --bg-color: #030a16;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #103b75 0%, #030a16 80%);
-            --panel-bg: rgba(12, 25, 45, 0.75);
-            --border-color: rgba(59, 130, 246, 0.3);
-            --accent-color: #3b82f6;
-            --glow-color: rgba(59, 130, 246, 0.4);
-        }
-
-        body.theme-epic {
-            --bg-color: #090314;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #4c1d95 0%, #090314 80%);
-            --panel-bg: rgba(26, 12, 45, 0.75);
-            --border-color: rgba(168, 85, 247, 0.3);
-            --accent-color: #c084fc;
-            --glow-color: rgba(168, 85, 247, 0.4);
-        }
-
-        body.theme-legendary {
-            --bg-color: #080603;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #523f10 0%, #080603 80%);
-            --panel-bg: rgba(30, 24, 12, 0.75);
-            --border-color: rgba(234, 179, 8, 0.3);
-            --accent-color: #ffea79;
-            --glow-color: rgba(234, 179, 8, 0.4);
-        }
-
-        body.theme-mystic {
-            --bg-color: #140308;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #700625 0%, #140308 80%);
-            --panel-bg: rgba(45, 12, 22, 0.75);
-            --border-color: rgba(255, 0, 85, 0.35);
-            --accent-color: #ff3377;
-            --glow-color: rgba(255, 0, 85, 0.5);
-        }
-
-        body.theme-secret {
-            --bg-color: #020d0b;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #064e3b 0%, #020d0b 80%);
-            --panel-bg: rgba(6, 30, 26, 0.75);
-            --border-color: rgba(0, 255, 204, 0.4);
-            --accent-color: #00ffcc;
-            --glow-color: rgba(0, 255, 204, 0.5);
-        }
-
-        body.theme-emerald {
-            --bg-color: #02140d;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #0d5c3a 0%, #02140d 80%);
-            --panel-bg: rgba(8, 38, 25, 0.75);
-            --border-color: rgba(16, 185, 129, 0.35);
-            --accent-color: #10b981;
-            --glow-color: rgba(16, 185, 129, 0.4);
-        }
-
-        body.theme-aquamarine {
-            --bg-color: #02121a;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #0a4f6e 0%, #02121a 80%);
-            --panel-bg: rgba(10, 32, 48, 0.75);
-            --border-color: rgba(6, 182, 212, 0.35);
-            --accent-color: #06b6d4;
-            --glow-color: rgba(6, 182, 212, 0.4);
+            --bg-grad: linear-gradient(180deg, #d4f1f9 0%, #a9e0f3 40%, #57bce6 100%);
+            --text-col: #1a3c5a;
+            --p-col: #0d4b75;
+            --win-bg: rgba(255, 255, 255, 0.5);
+            --win-border: rgba(255, 255, 255, 0.9);
+            --card-bg: rgba(255, 255, 255, 0.25);
+            --btn1-grad: linear-gradient(180deg, #38ef7d 0%, #11998e 100%);
+            --btn2-grad: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%);
+            --btn3-grad: linear-gradient(180deg, #9333ea 0%, #6b21a8 100%);
+            --btn4-grad: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+            --btn5-grad: linear-gradient(180deg, #f43f5e 0%, #be123c 100%);
+            --modal-bg: rgba(255, 255, 255, 0.88);
+            --heading-col: #004b7a;
+            --shadow: 0 15px 35px rgba(0, 75, 135, 0.25);
         }
 
         body.theme-cyberpunk {
-            --bg-color: #120317;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #8b005d 0%, #05010e 80%);
-            --panel-bg: rgba(38, 8, 40, 0.75);
-            --border-color: rgba(244, 63, 94, 0.4);
-            --accent-color: #f43f5e;
-            --glow-color: rgba(244, 63, 94, 0.5);
+            --bg-grad: linear-gradient(180deg, #0d0221 0%, #190028 50%, #240046 100%);
+            --text-col: #00ffcc;
+            --p-col: #ff007f;
+            --win-bg: rgba(20, 0, 40, 0.7);
+            --win-border: rgba(255, 0, 127, 0.6);
+            --card-bg: rgba(40, 0, 80, 0.5);
+            --btn1-grad: linear-gradient(180deg, #ff007f 0%, #7928ca 100%);
+            --btn2-grad: linear-gradient(180deg, #00ffcc 0%, #0072ff 100%);
+            --btn3-grad: linear-gradient(180deg, #d946ef 0%, #9333ea 100%);
+            --btn4-grad: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+            --btn5-grad: linear-gradient(180deg, #f43f5e 0%, #9f1239 100%);
+            --modal-bg: rgba(15, 2, 30, 0.92);
+            --heading-col: #00ffcc;
+            --shadow: 0 0 35px rgba(255, 0, 127, 0.4);
         }
 
-        body.theme-absolute {
-            --bg-color: #0d0d14;
-            --bg-gradient: radial-gradient(circle at 50% -20%, #312e81 0%, #06060c 80%);
-            --panel-bg: rgba(20, 20, 38, 0.8);
-            --border-color: rgba(129, 140, 248, 0.4);
-            --accent-color: #818cf8;
-            --glow-color: rgba(129, 140, 248, 0.5);
+        body.theme-dark {
+            --bg-grad: linear-gradient(180deg, #111216 0%, #1a1c23 50%, #0d0e12 100%);
+            --text-col: #e0e0e0;
+            --p-col: #8a9bb0;
+            --win-bg: rgba(26, 28, 35, 0.8);
+            --win-border: rgba(255, 255, 255, 0.15);
+            --card-bg: rgba(35, 38, 48, 0.6);
+            --btn1-grad: linear-gradient(180deg, #232733 0%, #111318 100%);
+            --btn2-grad: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+            --btn3-grad: linear-gradient(180deg, #7c3aed 0%, #4c1d95 100%);
+            --btn4-grad: linear-gradient(180deg, #d97706 0%, #92400e 100%);
+            --btn5-grad: linear-gradient(180deg, #e11d48 0%, #881337 100%);
+            --modal-bg: rgba(18, 20, 26, 0.95);
+            --heading-col: #ffffff;
+            --shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
-        * { box-sizing: border-box; }
+        body.theme-gold {
+            --bg-grad: linear-gradient(180deg, #1a160d 0%, #2e2410 50%, #110d06 100%);
+            --text-col: #ffea79;
+            --p-col: #eab308;
+            --win-bg: rgba(45, 38, 20, 0.8);
+            --win-border: rgba(234, 179, 8, 0.4);
+            --card-bg: rgba(60, 50, 25, 0.6);
+            --btn1-grad: linear-gradient(180deg, #eab308 0%, #a16207 100%);
+            --btn2-grad: linear-gradient(180deg, #ca8a04 0%, #854d0e 100%);
+            --btn3-grad: linear-gradient(180deg, #b45309 0%, #78350f 100%);
+            --btn4-grad: linear-gradient(180deg, #d97706 0%, #78350f 100%);
+            --btn5-grad: linear-gradient(180deg, #dc2626 0%, #991b1b 100%);
+            --modal-bg: rgba(30, 25, 12, 0.95);
+            --heading-col: #ffea79;
+            --shadow: 0 15px 35px rgba(234, 179, 8, 0.25);
+        }
+
         body {
-            background: var(--bg-color);
-            background-image: var(--bg-gradient);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-            min-height: 100vh; margin: 0; padding: 12px 8px; overflow-x: hidden;
-            transition: background 0.5s ease;
+            background: var(--bg-grad);
+            color: var(--text-col);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        .header { text-align: center; margin-bottom: 15px; position: relative; }
-        h1 {
-            font-size: clamp(32px, 8vw, 50px); font-weight: 900; margin: 0;
-            background: linear-gradient(135deg, #ff007f 0%, #a855f7 50%, var(--accent-color) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-transform: uppercase; letter-spacing: 3px;
-            filter: drop-shadow(0 0 25px rgba(255, 0, 127, 0.5));
-            animation: pulse-title 3s ease-in-out infinite alternate;
-        }
-        @keyframes pulse-title {
-            0% { filter: drop-shadow(0 0 20px rgba(255, 0, 127, 0.4)); }
-            100% { filter: drop-shadow(0 0 35px rgba(0, 223, 216, 0.6)); }
+        .header {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
 
-        .subtitle { 
-            color: #a4a9c7; font-size: clamp(11px, 3vw, 13px); margin-top: 4px; 
-            font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+        .header-bg-number {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -55%);
+            font-size: 140px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.35);
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
         }
 
-        #flash-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #ffffff; opacity: 0; pointer-events: none; z-index: 999; transition: opacity 0.1s ease-out;
+        .header h1 {
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(180deg, #ffffff 0%, #00a2e8 70%, #005b9e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 4px 8px rgba(0, 70, 130, 0.4));
+            margin-bottom: 2px;
+            position: relative;
+            z-index: 1;
         }
 
-        #achievement-toast {
-            position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, rgba(31, 26, 58, 0.95), rgba(13, 13, 24, 0.95));
-            border: 2px solid var(--accent-color); box-shadow: 0 0 25px var(--glow-color);
-            backdrop-filter: blur(10px); border-radius: 14px; padding: 10px 20px; 
-            display: flex; align-items: center; gap: 12px; z-index: 1000; 
-            transition: top 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 90%;
-        }
-        #achievement-toast.show { top: 15px; }
-        .toast-icon { font-size: 28px; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
-        .toast-title { font-size: 10px; color: var(--accent-color); text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
-        .toast-desc { font-size: 13px; font-weight: 700; color: #fff; margin-top: 2px; }
-
-        .menu-toggle {
-            position: fixed; top: 15px; right: 15px; z-index: 1001;
-            width: 42px; height: 42px; background: var(--panel-bg);
-            border: 1px solid var(--border-color); border-radius: 12px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
-            cursor: pointer; backdrop-filter: blur(10px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); transition: all 0.3s ease;
-        }
-        .menu-toggle:hover { transform: scale(1.05); border-color: var(--accent-color); }
-        .menu-toggle span { width: 18px; height: 2px; background-color: var(--text-color); border-radius: 2px; transition: all 0.3s ease; }
-
-        .sidebar-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px);
-            z-index: 1002; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .sidebar-overlay.active { opacity: 1; pointer-events: auto; }
-
-        .sidebar {
-            position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
-            background: rgba(12, 14, 24, 0.95); border-left: 1px solid var(--border-color);
-            backdrop-filter: blur(20px); z-index: 1003; padding: 20px 16px;
-            display: flex; flex-direction: column; gap: 16px;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .sidebar.active { right: 0; }
-
-        .sidebar-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; }
-        .sidebar-title { font-size: 16px; font-weight: 900; letter-spacing: 1px; color: var(--accent-color); }
-        .close-sidebar { cursor: pointer; font-size: 22px; color: #8f93b0; transition: color 0.2s; }
-        .close-sidebar:hover { color: #fff; }
-
-        .sidebar-section { display: flex; flex-direction: column; gap: 8px; }
-        .sidebar-label { font-size: 10px; font-weight: 800; color: #72779a; text-transform: uppercase; letter-spacing: 1px; }
-
-        .sidebar-btn {
-            width: 100%; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 800;
-            border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);
-            color: #fff; cursor: pointer; text-align: left; display: flex; align-items: center; justify-content: space-between;
-            transition: all 0.25s ease; touch-action: manipulation;
-        }
-        .sidebar-btn:hover { background: rgba(255,255,255,0.08); border-color: var(--accent-color); transform: translateX(-2px); }
-        .sidebar-btn.export-btn { color: var(--accent-color); border-color: rgba(0, 223, 216, 0.3); }
-        .sidebar-btn.import-btn { color: #c084fc; border-color: rgba(168, 85, 247, 0.3); }
-        .sidebar-btn.reset-btn { color: #ff4757; border-color: rgba(255, 71, 87, 0.3); }
-        .sidebar-btn.reset-btn:hover { background: rgba(255, 71, 87, 0.15); }
-
-        .toggle-switch { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; }
-        .switch { position: relative; display: inline-block; width: 40px; height: 22px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #202230; transition: .3s; border-radius: 22px; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .slider:before {
-            position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px;
-            background-color: white; transition: .3s; border-radius: 50%;
-        }
-        input:checked + .slider { background-color: var(--accent-color); }
-        input:checked + .slider:before { transform: translateX(18px); }
-
-        .game-progress-box {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px; padding: 12px; text-align: center; position: relative; overflow: hidden;
-        }
-        .game-pct { font-size: 26px; font-weight: 900; color: var(--accent-color); text-shadow: 0 0 12px var(--glow-color); }
-        .progress-bar-bg { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 8px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #a855f7, var(--accent-color)); transition: width 0.5s ease; }
-
-        /* КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ИГРЫ */
-        .custom-modal {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
-            z-index: 3000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .custom-modal.active { opacity: 1; pointer-events: auto; }
-        .custom-modal-card {
-            background: linear-gradient(135deg, rgba(20, 22, 36, 0.98), rgba(10, 12, 20, 0.98));
-            border: 2px solid var(--border-color); border-radius: 20px; padding: 24px; text-align: center;
-            max-width: 380px; width: 90%; box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
-            transform: scale(0.85); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .custom-modal.active .custom-modal-card { transform: scale(1); }
-        .custom-modal-icon { font-size: 42px; margin-bottom: 8px; }
-        .custom-modal-title { font-size: 18px; font-weight: 900; color: #fff; text-transform: uppercase; margin-bottom: 8px; }
-        .custom-modal-desc { font-size: 13px; color: #a4a9c7; line-height: 1.4; margin-bottom: 20px; }
-        .custom-modal-actions { display: flex; gap: 10px; justify-content: center; }
-        .modal-btn {
-            flex: 1; padding: 12px; font-size: 13px; font-weight: 800; border-radius: 10px;
-            border: none; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
-        }
-        .modal-btn-confirm { background: #ff4757; color: #fff; box-shadow: 0 0 15px rgba(255, 71, 87, 0.4); }
-        .modal-btn-confirm:hover { background: #ff6b81; transform: translateY(-2px); }
-        .modal-btn-cancel { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15); }
-        .modal-btn-cancel:hover { background: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
-
-        .modal-input {
-            width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--accent-color); border-radius: 8px;
-            color: #fff; font-size: 12px; margin-bottom: 16px; outline: none;
-            text-align: center; font-family: monospace;
+        .header p {
+            color: var(--p-col);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
         }
 
-        .victory-modal {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
-            z-index: 2000; display: flex; justify-content: center; align-items: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+        /* Верхняя панель экономики и баффа */
+        .status-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+            z-index: 10;
         }
-        .victory-modal.active { opacity: 1; pointer-events: auto; }
-        .victory-card {
-            background: linear-gradient(135deg, rgba(26, 12, 45, 0.95), rgba(12, 14, 24, 0.95));
-            border: 2px solid #00ffcc; border-radius: 20px; padding: 30px 20px; text-align: center;
-            max-width: 420px; width: 90%; box-shadow: 0 0 40px rgba(0, 255, 204, 0.4);
-            transform: scale(0.8); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .victory-modal.active .victory-card { transform: scale(1); }
-        .victory-title { font-size: 22px; font-weight: 900; color: #00ffcc; text-transform: uppercase; margin-bottom: 10px; }
-        .victory-desc { font-size: 13px; color: #d0d0d0; line-height: 1.4; margin-bottom: 20px; }
-        .victory-btn {
-            padding: 12px 30px; font-size: 14px; font-weight: 900; color: #000;
-            background: #00ffcc; border: none; border-radius: 10px; cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.6); transition: transform 0.2s;
-        }
-        .victory-btn:hover { transform: scale(1.05); }
 
-        .roulette-wrapper {
-            position: relative; width: 100%; max-width: 760px; padding: 8px;
-            background: var(--panel-bg); backdrop-filter: blur(16px); border-radius: 18px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border-color);
+        .coins-display {
+            font-size: 15px;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid var(--win-border);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .roulette-container {
-            position: relative; width: 100%; height: 135px; background: #08090e;
-            border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.9);
+
+        .luck-boost-btn {
+            background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
         }
-        .roulette-container::before, .roulette-container::after {
-            content: ''; position: absolute; top: 0; bottom: 0; width: 45px; z-index: 5; pointer-events: none;
+        .luck-boost-btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
+        .luck-boost-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .luck-active-badge {
+            font-size: 12px;
+            font-weight: 800;
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            animation: pulse 1.5s infinite alternate;
         }
-        .roulette-container::before { left: 0; background: linear-gradient(90deg, #08090e 0%, transparent 100%); }
-        .roulette-container::after { right: 0; background: linear-gradient(-90deg, #08090e 0%, transparent 100%); }
+        @keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+
+        .case-window {
+            position: relative;
+            width: 720px;
+            height: 160px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background: var(--win-bg);
+            border: 2px solid var(--win-border);
+            border-radius: 22px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(14px);
+        }
+
+        .case-window::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 45%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            z-index: 12;
+        }
 
         .pointer {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            width: 3px; height: 100%; background: #ff0055; z-index: 10;
-            box-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, #00f0ff, #0077ff);
+            z-index: 15;
+            box-shadow: 0 0 12px rgba(0, 162, 232, 0.9);
         }
-        .pointer::before, .pointer::after {
-            content: ''; position: absolute; left: 50%; transform: translateX(-50%);
-            width: 0; height: 0; border-style: solid;
-        }
-        .pointer::before { top: 0; border-width: 8px 6px 0 6px; border-color: #ff0055 transparent transparent transparent; }
-        .pointer::after { bottom: 0; border-width: 0 6px 8px 6px; border-color: transparent transparent #ff0055 transparent; }
 
-        .tape { display: flex; position: absolute; left: 0; top: 12px; }
+        .pointer::before, .pointer::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+        }
+
+        .pointer::before { top: 0; border-top: 10px solid #00c6ff; }
+        .pointer::after { bottom: 0; border-bottom: 10px solid #0072ff; }
+
+        .strip {
+            display: flex;
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%;
+            transition: left 4s cubic-bezier(0.08, 0.82, 0.17, 1);
+        }
 
         .card {
-            width: 110px; height: 110px; margin: 0 4px; background: rgba(20, 21, 31, 0.8);
-            border-radius: 12px; display: flex; flex-direction: column; align-items: center;
-            justify-content: space-between; box-sizing: border-box; flex-shrink: 0;
-            border: 2px solid rgba(255, 255, 255, 0.08); border-bottom-width: 5px;
-            padding: 8px 4px; text-align: center; overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            perspective: 1000px; transform-style: preserve-3d;
-        }
-        .card:hover { transform: translateY(-3px) scale(1.02); }
-        .card-icon { 
-            font-size: 28px; line-height: 1; display: flex; justify-content: center; 
-            white-space: nowrap; margin-top: 2px; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.5));
-            transition: transform 0.3s;
-        }
-        .card:hover .card-icon { transform: scale(1.1); }
-        .card-name { 
-            color: #e0e0e0; font-size: 9.5px; font-weight: 700; max-height: 38px; 
-            overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            min-width: 115px;
+            height: 160px;
+            background: var(--card-bg);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 6px;
+            text-align: center;
+            border-bottom: 4px solid #8a9bb0;
         }
 
-        .common { border-color: #7289da; box-shadow: inset 0 -10px 15px -8px rgba(114, 137, 218, 0.3); }
-        .rare { border-color: #3b82f6; box-shadow: inset 0 -10px 15px -8px rgba(59, 130, 246, 0.3), 0 3px 12px rgba(59, 130, 246, 0.2); }
-        .epic { border-color: #a855f7; box-shadow: inset 0 -10px 15px -8px rgba(168, 85, 247, 0.35), 0 3px 15px rgba(168, 85, 247, 0.25); }
-        .legendary { border-color: #eab308; box-shadow: inset 0 -10px 15px -8px rgba(234, 179, 8, 0.4), 0 3px 18px rgba(234, 179, 8, 0.3); }
-        .mystic { border-color: #ff0055; box-shadow: inset 0 -10px 15px -8px rgba(255, 0, 85, 0.45), 0 3px 22px rgba(255, 0, 85, 0.35); }
-        .secret { animation: rainbow-border 2s infinite linear; box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
-
-        @keyframes rainbow-border { 
-            0% { border-color: #ff0000; box-shadow: 0 0 12px rgba(255,0,0,0.5); } 
-            50% { border-color: #00ffcc; box-shadow: 0 0 16px rgba(0,255,204,0.6); } 
-            100% { border-color: #ff0000; box-shadow: 0 0 12px rgba(255,0,0,0.5); } 
+        .card img {
+            width: 68px; height: 68px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
-        button.spin-btn {
-            margin-top: 18px; padding: 14px 42px; font-size: 17px; font-weight: 900; color: #fff;
-            background: linear-gradient(135deg, #ff007f, #7928ca, #00dfd8); background-size: 200% 200%;
-            border: none; border-radius: 12px; cursor: pointer; 
-            box-shadow: 0 8px 25px rgba(255, 0, 127, 0.4); 
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            text-transform: uppercase; letter-spacing: 2px; animation: gradient-bg 4s ease infinite;
-            touch-action: manipulation;
-        }
-        @keyframes gradient-bg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        button.spin-btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 35px rgba(255, 0, 127, 0.6); }
-        button.spin-btn:active { transform: translateY(-1px) scale(0.98); }
-        button:disabled { background: #202230 !important; color: #505368 !important; cursor: not-allowed !important; transform: none !important; box-shadow: none !important; animation: none !important; }
-
-        #win-message { 
-            margin-top: 15px; font-size: 18px; font-weight: 800; min-height: 28px; text-align: center;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.3); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .card span.card-name {
+            font-size: 10px;
+            margin-top: 2px;
+            color: var(--text-col);
+            font-weight: 700;
+            max-height: 38px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
         }
 
-        .section-container {
-            width: 100%; max-width: 760px; margin-top: 20px; background: var(--panel-bg);
-            backdrop-filter: blur(12px); border: 1px solid var(--border-color); 
-            border-radius: 16px; padding: 16px; position: relative;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-        }
-        .section-title { 
-            font-size: 13px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; 
-            color: #a4a9c7; display: flex; justify-content: space-between; align-items: center; letter-spacing: 1px;
-        }
-        .toggle-btn { cursor: pointer; user-select: none; transition: transform 0.3s ease; display: inline-block; padding: 4px; }
-        .collapsed { display: none !important; }
+        .rarity-common { border-bottom-color: #8a9bb0; }
+        .rarity-rare { border-bottom-color: #3b82f6; }
+        .rarity-epic { border-bottom-color: #a855f7; }
+        .rarity-legendary { border-bottom-color: #eab308; }
+        .rarity-mythic { border-bottom-color: #ef4444; }
+        .rarity-secret { border-bottom-color: #00ffcc; animation: rainbow 2s infinite linear; }
+        @keyframes rainbow { 0% { border-color: #ff0000; } 50% { border-color: #00ffcc; } 100% { border-color: #ff0000; } }
 
-        .theme-selector { display: flex; gap: 8px; flex-wrap: wrap; }
-        .theme-btn {
-            padding: 8px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); 
-            background: rgba(10, 11, 16, 0.6); color: #fff; font-size: 11px; font-weight: 700; 
-            cursor: pointer; transition: all 0.25s ease; backdrop-filter: blur(5px);
-            touch-action: manipulation;
+        .rarity-tag {
+            font-size: 8px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 0.5px;
         }
-        .theme-btn:hover:not(.locked) { border-color: var(--accent-color); transform: translateY(-2px); }
-        .theme-btn.active { border-color: var(--accent-color); background: rgba(255,255,255,0.12); box-shadow: 0 0 12px var(--glow-color); }
-        .theme-btn.locked { opacity: 0.4; cursor: not-allowed; }
+        .tag-common { background: #8a9bb0; }
+        .tag-rare { background: #3b82f6; }
+        .tag-epic { background: #a855f7; }
+        .tag-legendary { background: #eab308; }
+        .tag-mythic { background: #ef4444; }
+        .tag-secret { background: #00ffcc; color: #000; }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap: 8px; }
-        .stat-card { 
-            background: rgba(8, 9, 14, 0.7); border: 1px solid rgba(255, 255, 255, 0.06); 
-            border-radius: 12px; padding: 10px 6px; text-align: center; transition: transform 0.2s, border-color 0.2s;
+        .controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        .stat-card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, 0.2); }
-        .stat-value { font-size: 18px; font-weight: 900; text-shadow: 0 0 8px currentColor; }
-        .stat-label { font-size: 9px; color: #72779a; margin-top: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .achievements-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+        .btn {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .spin-btn { background: var(--btn1-grad); font-size: 18px; padding: 14px 45px; }
+        .collection-btn { background: var(--btn2-grad); }
+        .achievements-btn { background: var(--btn4-grad); }
+        .theme-btn { background: var(--btn3-grad); }
+        .data-btn { background: var(--btn5-grad); }
+
+        .btn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn:disabled {
+            background: #a0c4d0;
+            border-color: #c2e0ea;
+            cursor: not-allowed;
+            box-shadow: none;
+            color: #e0f2f7;
+            filter: none;
+        }
+
+        /* Уведомление о достижении */
+        #achievement-toast {
+            position: fixed;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #00c6ff;
+            box-shadow: 0 10px 30px rgba(0, 150, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #achievement-toast.show { top: 25px; }
+        .toast-icon { font-size: 32px; }
+        .toast-title { font-size: 10px; color: #0072ff; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; }
+        .toast-desc { font-size: 14px; font-weight: 700; color: #1a3c5a; margin-top: 2px; }
+
+        /* Модальные окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 20, 40, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--modal-bg);
+            border: 2px solid var(--win-border);
+            width: 850px;
+            max-height: 85vh;
+            border-radius: 24px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: var(--heading-col);
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .close-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+        }
+
+        .collection-grid, .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .collection-item {
+            background: var(--card-bg);
+            border: 2px solid var(--win-border);
+            border-radius: 16px;
+            padding: 12px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 180px;
+            justify-content: space-between;
+        }
+
+        .collection-item.locked {
+            background: rgba(100, 100, 100, 0.15);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .collection-item img {
+            width: 75px; height: 75px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .lock-icon { font-size: 40px; margin: 15px 0; opacity: 0.5; }
+
+        .collection-item span.item-title {
+            font-size: 11px;
+            color: var(--text-col);
+            font-weight: 700;
+            max-height: 35px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .count-badge { font-size: 14px; font-weight: 900; color: var(--p-col); letter-spacing: 0.5px; }
+
         .achievement-card {
-            background: rgba(8, 9, 14, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); 
-            border-radius: 12px; padding: 10px; display: flex; align-items: center; gap: 10px; 
-            opacity: 0.35; filter: grayscale(1); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--card-bg);
+            border: 2px solid var(--win-border);
+            border-radius: 16px;
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: space-between;
+            min-height: 140px;
         }
-        .achievement-card.unlocked { 
-            opacity: 1; filter: grayscale(0); border-color: var(--accent-color); 
-            background: linear-gradient(145deg, rgba(14, 19, 32, 0.8), rgba(8, 9, 14, 0.9)); 
-            box-shadow: 0 4px 15px var(--glow-color); transform: scale(1.01);
-        }
-        .ach-icon { font-size: 24px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-        .ach-title { font-size: 11px; font-weight: 800; color: #fff; }
-        .ach-desc { font-size: 9.5px; color: #8f93b0; margin-top: 2px; }
+        .achievement-card.locked { opacity: 0.45; filter: grayscale(1); }
+        .ach-icon { font-size: 36px; margin-bottom: 5px; }
+        .ach-title { font-size: 12px; font-weight: 800; color: var(--text-col); margin-bottom: 4px; }
+        .ach-desc { font-size: 10px; color: var(--p-col); font-weight: 600; line-height: 1.2; }
 
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
-        .catalog-item {
-            background: rgba(8, 9, 14, 0.7); border: 2px solid rgba(255, 255, 255, 0.06); 
-            border-radius: 12px; padding: 8px 4px; display: flex; flex-direction: column; 
-            align-items: center; justify-content: space-between; position: relative; 
-            text-align: center; min-height: 105px; overflow: hidden; transition: all 0.3s ease;
+        .stats { font-weight: 800; color: var(--p-col); margin-bottom: 10px; font-size: 14px; }
+
+        .themes-list { display: flex; flex-direction: column; gap: 12px; }
+
+        .theme-option {
+            background: var(--card-bg);
+            border: 2px solid var(--win-border);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .catalog-item.locked { opacity: 0.25; filter: grayscale(1); }
-        .catalog-item.unlocked { opacity: 1; filter: grayscale(0); }
-        .catalog-item.unlocked:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.6); }
-        .catalog-icon { font-size: 28px; line-height: 1; margin-top: 10px; display: flex; justify-content: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-        .catalog-name { font-size: 9px; font-weight: 700; color: #d0d0d0; max-height: 36px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
-        .catalog-count { 
-            position: absolute; top: 4px; right: 6px; background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(4px); padding: 1px 5px; border-radius: 8px; font-size: 8px; font-weight: 800; 
-            border: 1px solid rgba(255,255,255,0.1);
+        .theme-option:hover { filter: brightness(1.1); transform: translateX(4px); }
+        .theme-option span { font-size: 16px; font-weight: 800; color: var(--text-col); text-transform: uppercase; }
+
+        /* Разделы модалки данных и статистики */
+        .data-section { display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding-right: 5px; }
+        
+        .stat-block {
+            background: var(--card-bg);
+            border: 1px solid var(--win-border);
+            border-radius: 16px;
+            padding: 12px 16px;
         }
+        .stat-block h3 {
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--heading-col);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+        .stat-row:last-child { border-bottom: none; }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 16px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 6px;
+            border: 1px solid var(--win-border);
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #38ef7d, #11998e);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .data-box { display: flex; flex-direction: column; gap: 6px; }
+        .data-box label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--heading-col); }
+        .data-input {
+            width: 100%;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 2px solid var(--win-border);
+            background: rgba(255,255,255,0.2);
+            color: var(--text-col);
+            font-weight: 700;
+            font-size: 11px;
+        }
+        .action-btn {
+            padding: 8px;
+            font-weight: 800;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+        .btn-blue { background: #0072ff; }
+        .btn-red { background: #ff4757; }
     </style>
 </head>
-<body>
+<body class="theme-aero">
 
-    <div id="flash-overlay"></div>
-
-    <div class="menu-toggle" onclick="toggleSidebar()">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="sidebar-title">⚙️ Меню игры</div>
-            <div class="close-sidebar" onclick="toggleSidebar()">✕</div>
-        </div>
-
-        <div class="sidebar-section">
-            <div class="sidebar-label">Общий прогресс игры</div>
-            <div class="game-progress-box">
-                <div class="game-pct" id="game-total-pct">0%</div>
-                <div style="font-size: 9px; color: #72779a; margin-top: 2px;">Предметы + Достижения + Темы</div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill" id="game-progress-bar"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="sidebar-section">
-            <div class="sidebar-label">Аудио</div>
-            <div class="toggle-switch">
-                <span style="font-size: 11px; font-weight: 700;">🎵 8-Bit Chiptune Beat</span>
-                <label class="switch">
-                    <input type="checkbox" id="bg-music-toggle" onchange="toggleBgMusic(this.checked)">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="sidebar-section" style="margin-top: auto;">
-            <div class="sidebar-label">Управление данными</div>
-            <button class="sidebar-btn export-btn" onclick="exportData(event)">
-                <span>📤 Экспорт файла</span>
-                <span>📋</span>
-            </button>
-            <button class="sidebar-btn import-btn" onclick="importData(event)">
-                <span>📥 Импорт файла</span>
-                <span>📂</span>
-            </button>
-            <button class="sidebar-btn reset-btn" onclick="openResetModal(event)">
-                <span>🗑️ Сбросить всё</span>
-                <span>⚠️</span>
-            </button>
-        </div>
-    </div>
-
-    <!-- КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ СБРОСА ПРОГРЕССА -->
-    <div class="custom-modal" id="reset-modal">
-        <div class="custom-modal-card" style="border-color: rgba(255, 71, 87, 0.5);">
-            <div class="custom-modal-icon">⚠️</div>
-            <div class="custom-modal-title" style="color: #ff4757;">СБРОС ПРОГРЕССА</div>
-            <div class="custom-modal-desc">Вы действительно хотите удалить весь свой прогресс? Это действие нельзя будет отменить!</div>
-            <div class="custom-modal-actions">
-                <button class="modal-btn modal-btn-cancel" onclick="closeResetModal()">Отмена</button>
-                <button class="modal-btn modal-btn-confirm" onclick="confirmResetProgress()">Сбросить</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- КАСТОМНОЕ МОДАЛЬНОЕ ОКНО ДЛЯ ИМПОРТА/ЭКСПОРТА -->
-    <div class="custom-modal" id="io-modal">
-        <div class="custom-modal-card">
-            <div class="custom-modal-icon" id="io-modal-icon">📤</div>
-            <div class="custom-modal-title" id="io-modal-title">СОХРАНЕНИЕ</div>
-            <div class="custom-modal-desc" id="io-modal-desc">Скопируйте ваш код сохранения:</div>
-            <input type="text" class="modal-input" id="io-modal-input" readonly>
-            <div class="custom-modal-actions">
-                <button class="modal-btn modal-btn-cancel" onclick="closeIOModal()">Закрыть</button>
-                <button class="modal-btn modal-btn-confirm" id="io-modal-action-btn" style="background: var(--accent-color); color: #000;">Скопировать</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="victory-modal" id="victory-modal">
-        <div class="victory-card">
-            <div style="font-size: 50px; margin-bottom: 8px;">👑</div>
-            <div class="victory-title">ИГРА ПРОЙДЕНА НА 100%!</div>
-            <div class="victory-desc">Ты выбил абсолютно все предметы, открыл все достижения и разблокировал все темы оформлений! Ты настоящий Владыка BUBA DROP!</div>
-            <button class="victory-btn" onclick="closeVictoryModal()">УРА! ГО НА ВТОРУЮ СОТНЮ!</button>
-        </div>
-    </div>
-
+    <!-- Тост с ачивкой -->
     <div id="achievement-toast">
-        <div class="toast-icon" id="toast-icon">🏆</div>
+        <div class="toast-icon" id="toastIcon">🏆</div>
         <div>
             <div class="toast-title">Достижение получено!</div>
-            <div class="toast-desc" id="toast-desc">Описание ачивки</div>
+            <div class="toast-desc" id="toastDesc">Первый дроп</div>
         </div>
     </div>
 
     <div class="header">
+        <div class="header-bg-number">2</div>
         <h1>BUBA DROP</h1>
-        <div class="subtitle">твой шанс на большой дроп.</div>
+        <p>Твой шанс на большой дроп.</p>
     </div>
 
-    <div class="roulette-wrapper">
-        <div class="roulette-container" id="roulette">
-            <div class="pointer"></div>
-            <div class="tape" id="tape"></div>
+    <!-- Статус бар с монетами и покупкой удачи -->
+    <div class="status-bar">
+        <div class="coins-display">💰 Монеты: <span id="coinsCount">0</span></div>
+        <button class="luck-boost-btn" id="luckBtn" onclick="buyLuckBoost()">✨ Купить Удачу (50 🪙)</button>
+        <div class="luck-active-badge" id="luckBadge" style="display: none;">🔥 Удача активна! (Осталось: <span id="luckSpinsLeft">3</span>)</div>
+    </div>
+
+    <div class="case-window">
+        <div class="pointer"></div>
+        <div class="strip" id="strip"></div>
+    </div>
+
+    <div class="controls">
+        <button class="btn spin-btn" id="btn" onclick="spin()">КРУТИТЬ</button>
+        <button class="btn collection-btn" onclick="openCollection()">Коллекция</button>
+        <button class="btn achievements-btn" onclick="openAchievements()">Достижения</button>
+        <button class="btn theme-btn" onclick="openThemes()">Темы</button>
+        <button class="btn data-btn" onclick="openDataModal()">Данные / Статистика</button>
+    </div>
+
+    <!-- Модалка коллекции -->
+    <div class="modal" id="collectionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Журнал коллекции</h2>
+                <button class="close-btn" onclick="closeModal('collectionModal')">✕</button>
+            </div>
+            <div class="stats" id="collectionStats">Открыто: 0 / 51</div>
+            <div class="collection-grid" id="collectionGrid"></div>
         </div>
     </div>
 
-    <button class="spin-btn" id="spin-btn" onclick="spin()">КРУТИТЬ</button>
-    <div id="win-message"></div>
-
-    <div class="section-container">
-        <div class="section-title">
-            <span>Темы оформления</span>
-            <span class="toggle-btn" onclick="toggleSection('theme-selector-wrapper', this)">▼</span>
+    <!-- Модалка достижений -->
+    <div class="modal" id="achievementsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Достижения</h2>
+                <button class="close-btn" onclick="closeModal('achievementsModal')">✕</button>
+            </div>
+            <div class="stats" id="achievementsStats">Выполнено: 0 / 25</div>
+            <div class="achievements-grid" id="achievementsGrid"></div>
         </div>
-        <div id="theme-selector-wrapper">
-            <div class="theme-selector">
-                <button class="theme-btn active" id="theme-default" onclick="setTheme('default')">🔮 Неон</button>
-                <button class="theme-btn locked" id="theme-rare" onclick="setTheme('rare')">🔹 Синяя (Все Редкие)</button>
-                <button class="theme-btn locked" id="theme-epic" onclick="setTheme('epic')">🔮 Фиолетовая (Все Эпики)</button>
-                <button class="theme-btn locked" id="theme-legendary" onclick="setTheme('legendary')">👑 Золото (Все Легендарные)</button>
-                <button class="theme-btn locked" id="theme-mystic" onclick="setTheme('mystic')">💖 Алая (Все Мифические)</button>
-                <button class="theme-btn locked" id="theme-secret" onclick="setTheme('secret')">✨ Секретная (Все Секретки)</button>
-                <button class="theme-btn locked" id="theme-emerald" onclick="setTheme('emerald')">🟢 Изумруд (15 Ачивок)</button>
-                <button class="theme-btn locked" id="theme-aquamarine" onclick="setTheme('aquamarine')">🌊 Аквамарин (150 Спинов)</button>
-                <button class="theme-btn locked" id="theme-cyberpunk" onclick="setTheme('cyberpunk')">⚡ Киберпанк (30 Вещей)</button>
-                <button class="theme-btn locked" id="theme-absolute" onclick="setTheme('absolute')">🌌 Абсолют (1 Секретка)</button>
+    </div>
+
+    <!-- Модалка тем -->
+    <div class="modal" id="themesModal">
+        <div class="modal-content" style="width: 500px;">
+            <div class="modal-header">
+                <h2>Выбор темы</h2>
+                <button class="close-btn" onclick="closeModal('themesModal')">✕</button>
+            </div>
+            <div class="themes-list">
+                <div class="theme-option" onclick="setTheme('theme-aero')">
+                    <span>Frutiger Aero (Классика)</span>
+                    <span>🌊</span>
+                </div>
+                <div class="theme-option" onclick="setTheme('theme-cyberpunk')">
+                    <span>Неоновый Киберпанк</span>
+                    <span>🌆</span>
+                </div>
+                <div class="theme-option" onclick="setTheme('theme-dark')">
+                    <span>Темный Уголек</span>
+                    <span>🌑</span>
+                </div>
+                <div class="theme-option" onclick="setTheme('theme-gold')">
+                    <span>Золотая Роскошь</span>
+                    <span>👑</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="section-container">
-        <div class="section-title">
-            <div>
-                <span>Достижения</span>
-                <span id="ach-progress" style="font-size: 11px; color: #8f93b0; margin-left: 6px;">0 / 41</span>
+    <!-- Модалка данных и статистики -->
+    <div class="modal" id="dataModal">
+        <div class="modal-content" style="width: 600px;">
+            <div class="modal-header">
+                <h2>Статистика & Сейв</h2>
+                <button class="close-btn" onclick="closeModal('dataModal')">✕</button>
             </div>
-            <span class="toggle-btn" onclick="toggleSection('achievements-grid', this)">▼</span>
-        </div>
-        <div class="achievements-grid" id="achievements-grid"></div>
-    </div>
+            <div class="data-section">
+                
+                <!-- Статистика прохождения -->
+                <div class="stat-block">
+                    <h3>📊 Общий прогресс игры: <span id="totalPercent">0%</span></h3>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="totalProgressBar"></div>
+                    </div>
+                </div>
 
-    <div class="section-container">
-        <div class="section-title">Статистика игрока</div>
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-value" id="stat-total" style="color: #00dfd8;">0</div><div class="stat-label">Всего</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-common" style="color: #7289da;">0</div><div class="stat-label">Обычных</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-rare" style="color: #3b82f6;">0</div><div class="stat-label">Редких</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-epic" style="color: #a855f7;">0</div><div class="stat-label">Эпических</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-legendary" style="color: #eab308;">0</div><div class="stat-label">Легенд.</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-mystic" style="color: #ff0055;">0</div><div class="stat-label">Мифических</div></div>
-            <div class="stat-card"><div class="stat-value" id="stat-secret" style="color: #00ffcc;">0</div><div class="stat-label">Секретных</div></div>
-        </div>
-    </div>
+                <div class="stat-block">
+                    <h3>📈 Подробная статистика</h3>
+                    <div class="stat-row"><span>Всего прокруток:</span> <span id="statTotalSpins">0</span></div>
+                    <div class="stat-row"><span>Баланс монет:</span> <span id="statCoins">0 🪙</span></div>
+                    <div class="stat-row"><span>Собрано предметов:</span> <span id="statCollection">0 / 51</span></div>
+                    <div class="stat-row"><span>Выполнено ачивок:</span> <span id="statAchievements">0 / 25</span></div>
+                </div>
 
-    <div class="section-container">
-        <div class="section-title">
-            <div>
-                <span>Коллекция</span>
-                <span id="catalog-progress" style="font-size: 11px; color: #8f93b0; margin-left: 6px;">0 / 50</span>
+                <div class="stat-block">
+                    <h3>🎲 Выпадения по редкостям</h3>
+                    <div class="stat-row"><span>⚪ Обычные:</span> <span id="statCommon">0</span></div>
+                    <div class="stat-row"><span>🔵 Редкие:</span> <span id="statRare">0</span></div>
+                    <div class="stat-row"><span>🟣 Эпические:</span> <span id="statEpic">0</span></div>
+                    <div class="stat-row"><span>🟡 Легендарные:</span> <span id="statLegendary">0</span></div>
+                    <div class="stat-row"><span>🔴 Мифические:</span> <span id="statMythic">0</span></div>
+                    <div class="stat-row"><span>🌈 Секретные:</span> <span id="statSecret">0</span></div>
+                </div>
+
+                <!-- Импорт / Экспорт -->
+                <div class="data-box">
+                    <label>Код экспорта прогресса:</label>
+                    <input type="text" id="exportInput" class="data-input" readonly>
+                    <button class="action-btn btn-blue" onclick="copyExportCode()">Скопировать код</button>
+                </div>
+                <div class="data-box">
+                    <label>Импорт кода прогресса:</label>
+                    <input type="text" id="importInput" class="data-input" placeholder="Вставьте код сюда...">
+                    <button class="action-btn btn-blue" onclick="importProgress()">Загрузить прогресс</button>
+                </div>
+                
+                <button class="action-btn btn-red" onclick="resetProgress()">⚠️ Сбросить весь прогресс</button>
             </div>
-            <span class="toggle-btn" onclick="toggleSection('catalog-grid', this)">▼</span>
         </div>
-        <div class="catalog-grid" id="catalog-grid"></div>
     </div>
 
     <script>
-        const items = [
-            { id: "buba_beer", name: "Пиво бубы", rarity: "common", color: "#7289da", weight: 15, icon: "🍺" },
-            { id: "latte", name: "Латте с ягодами жырлы бырлы хырлы хырлы", rarity: "common", color: "#7289da", weight: 12, icon: "☕" },
-            { id: "shawarma", name: "Шаурма с мясом из светофора", rarity: "common", color: "#7289da", weight: 12, icon: "🌯" },
-            { id: "chips_lava", name: "Чипсы лава лава мать шалава", rarity: "common", color: "#7289da", weight: 11, icon: "🔥" },
-            { id: "buba_spear", name: "Копьё бубы", rarity: "common", color: "#7289da", weight: 10, icon: "🌲" },
-            
-            { id: "petya_pig", name: "Петя свин", rarity: "rare", color: "#3b82f6", weight: 5, icon: "🐷" },
-            { id: "genka_photo", name: "Фото генки", rarity: "rare", color: "#3b82f6", weight: 4, icon: "🖼️🐕" },
-            { id: "buba_general", name: "Буба голубой генерал", rarity: "rare", color: "#3b82f6", weight: 4, icon: "🎖️" },
-            { id: "buba_shotgun", name: "Дробовик бубы", rarity: "rare", color: "#3b82f6", weight: 4, icon: "💥" },
-            { id: "black_buba", name: "Чёрный буба на плантации", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "👨🏿🌿" },
-            { id: "gladiator_buba", name: "Гладиатор буба", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "🛡️⚔️" },
-            { id: "house_buba", name: "Дом бубы", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "📦" },
-            { id: "robber_buba", name: "Пейдей буба", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "🐰" },
-            { id: "buba_fm", name: "Радио \"Буба FM\"", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "📻" },
-            { id: "lava_orchestra", name: "Оркестр буб \"Лава Шалава\"", rarity: "rare", color: "#3b82f6", weight: 3.5, icon: "🪈🪉" },
-
-            { id: "clock_bomb", name: "Бомба с часами", rarity: "epic", color: "#a855f7", weight: 2, icon: "💣" },
-            { id: "buba_perfume", name: "Духи с запахом бубы", rarity: "epic", color: "#a855f7", weight: 2, icon: "🧪" },
-            { id: "ryzen_pc", name: "Ryzen, родненький", rarity: "epic", color: "#a855f7", weight: 2, icon: "🖥️" },
-            { id: "buba_pipe", name: "Трубка капитана бубы", rarity: "epic", color: "#a855f7", weight: 2, icon: "🚬" },
-            { id: "forest_axe", name: "Топор бубы из фореста", rarity: "epic", color: "#a855f7", weight: 2, icon: "🪓" },
-            { id: "my_cubes", name: "Мои кубики сука", rarity: "epic", color: "#a855f7", weight: 1.5, icon: "🧊" },
-            { id: "mishko", name: "Мiшко", rarity: "epic", color: "#a855f7", weight: 1.5, icon: "🐻" },
-            { id: "sub_bibra", name: "Подлодка \"Бiбра\"", rarity: "epic", color: "#a855f7", weight: 1, icon: "🌊" },
-            { id: "buba_twice", name: "Буба два раза", rarity: "epic", color: "#a855f7", weight: 1.5, icon: "🗡️👼" },
-            { id: "burnt_house", name: "Сгоревший дом бубы", rarity: "epic", color: "#a855f7", weight: 1.5, icon: "📦🔥" },
-            { id: "balloon_platform", name: "Платформа с шариком из днг", rarity: "epic", color: "#a855f7", weight: 1.5, icon: "🎈" },
-
-            { id: "buba_knife", name: "Нож \"Буба Дроп\"", rarity: "legendary", color: "#eab308", weight: 1, icon: "🔪" },
-            { id: "smasher_machete", name: "Мачета слешера бубы", rarity: "legendary", color: "#eab308", weight: 0.9, icon: "🗡️" },
-            { id: "poverty_ace", name: "Порветный туз", rarity: "legendary", color: "#eab308", weight: 0.9, icon: "🎴" },
-            { id: "bomb_belt_buba", name: "Буба в поясе взрывчатки", rarity: "legendary", color: "#eab308", weight: 0.8, icon: "🧨" },
-            { id: "uranium_stick", name: "Урановая палочка", rarity: "legendary", color: "#eab308", weight: 0.8, icon: "☢️" },
-            { id: "cool_k1d", name: "КульК1д", rarity: "legendary", color: "#eab308", weight: 0.8, icon: "👑🎮" },
-            { id: "spermitto", name: "Спермитто Дилдакко", rarity: "legendary", color: "#eab308", weight: 0.8, icon: "🥀" },
-            { id: "kids_standup", name: "Детский стэндап", rarity: "legendary", color: "#eab308", weight: 0.8, icon: "🪑" },
-            { id: "nuclear_hpp", name: "Ядерно-физическая гидро-электро АЭС", rarity: "legendary", color: "#eab308", weight: 0.7, icon: "💥🏭" },
-            { id: "hazel_tree", name: "Орешник", rarity: "legendary", color: "#eab308", weight: 0.7, icon: "🥜" },
-            { id: "oil_debt", name: "Долг за нефть", rarity: "legendary", color: "#eab308", weight: 0.75, icon: "📜🛢️" },
-            { id: "money_briefcase", name: "Чемодан с деньгами", rarity: "legendary", color: "#eab308", weight: 0.75, icon: "🧳💵" },
-
-            { id: "cuirassier_rapier", name: "Шпага кирасира", rarity: "mystic", color: "#ff0055", weight: 0.4, icon: "⚔️" },
-            { id: "crowbar_cheese", name: "Лом бубы простите сыр", rarity: "mystic", color: "#ff0055", weight: 0.3, icon: "🛠️" },
-            { id: "buba_spoon", name: "Ложка бубы", rarity: "mystic", color: "#ff0055", weight: 0.3, icon: "🥄" },
-            { id: "buba_wheelchair", name: "Инвалидная коляска бубы", rarity: "mystic", color: "#ff0055", weight: 0.3, icon: "🦽" },
-            { id: "mango_edit", name: "Манго буба 67 эдит", rarity: "mystic", color: "#ff0055", weight: 0.3, icon: "🥭😎" },
-            { id: "napkins", name: "Так так так, салфетки", rarity: "mystic", color: "#ff0055", weight: 0.3, icon: "🧻" },
-            { id: "sweetie_judy", name: "Свити фокс и зайка джуди хопс", rarity: "mystic", color: "#ff0055", weight: 0.25, icon: "🦊🐇" },
-            { id: "terrorist_buba", name: "Буба-террорист", rarity: "mystic", color: "#ff0055", weight: 0.28, icon: "🧨✈️" },
-            { id: "buba_guest_1337", name: "Буба гость 1337", rarity: "mystic", color: "#ff0055", weight: 0.28, icon: "🎖️👊" },
-
-            { id: "sora_2", name: "Sora 2", rarity: "secret", color: "#00ffcc", weight: 0.05, icon: "🤖✨" },
-            { id: "lewis_gun", name: "Пулемёт \"Lewis\"", rarity: "secret", color: "#00ffcc", weight: 0.04, icon: "🔫" },
-            { id: "buba_himself", name: "Сам буба", rarity: "secret", color: "#00ffcc", weight: 0.03, icon: "🏆✨" }
-        ];
-
-        const achievementsList = [
-            { id: "spins_1", title: "Новичкам везёт?", desc: "Сделать самый первый спин", icon: "🌱", check: () => stats.total >= 1 },
-            { id: "spins_25", title: "Затягивает...", desc: "Сделать 25 спинов", icon: "🎰", check: () => stats.total >= 25 },
-            { id: "spins_100", title: "Крутильный Мастер", desc: "Сделать 100 спинов", icon: "🌀", check: () => stats.total >= 100 },
-            { id: "spins_250", title: "Азартный Лудоман", desc: "Сделать 250 спинов", icon: "🔥", check: () => stats.total >= 250 },
-            { id: "spins_500", title: "Палец не болит?", desc: "Сделать 500 спинов", icon: "💎", check: () => stats.total >= 500 },
-            { id: "collector_5", title: "Первые находки", desc: "Собрать 5 разных предметов", icon: "🎒", check: () => Object.keys(inventory).length >= 5 },
-            { id: "collector_15", title: "Серьёзный Гардероб", desc: "Собрать 15 разных предметов", icon: "📦", check: () => Object.keys(inventory).length >= 15 },
-            { id: "collector_25", title: "Почти Полная Коллекция", desc: "Собрать 25 разных предметов", icon: "🏆", check: () => Object.keys(inventory).length >= 25 },
-            { id: "collector_34", title: "Владыка Дропа", desc: "Собрать ВСЕ предметы коллекции", icon: "👑", check: () => Object.keys(inventory).length >= items.length },
-            { id: "first_rare", title: "Синяя вспышка", desc: "Выбить первый Редкий предмет", icon: "🔹", check: () => (stats.rare || 0) >= 1 },
-            { id: "first_epic", title: "Фиолетовый барон", desc: "Выбить первый Эпический предмет", icon: "🔮", check: () => (stats.epic || 0) >= 1 },
-            { id: "first_legendary", title: "Золотая лихорадка", desc: "Выбить первый Легендарный предмет", icon: "👑", check: () => (stats.legendary || 0) >= 1 },
-            { id: "first_mystic", title: "Магия Мифика", desc: "Выбить первый Мифический предмет", icon: "💖", check: () => (stats.mystic || 0) >= 1 },
-            { id: "first_secret", title: "Шок года!", desc: "Выбить Секретный предмет", icon: "✨", check: () => (stats.secret || 0) >= 1 },
-            { id: "beer_lover_50", title: "табличка \"ушёл в запой\"", desc: "Собрать 50 штук 'Пиво бубы'", icon: "🍺", check: () => (inventory['buba_beer'] || 0) >= 50 },
-            { id: "shawarma_king", title: "Один Дома", desc: "Собрать 20 штук 'Шаурма с мясом'", icon: "🌯", check: () => (inventory['shawarma'] || 0) >= 20 },
-            { id: "ryzen_fan", title: "Киберспортивный Задрот", desc: "Собрать 5 штук 'Ryzen, родненький'", icon: "🖥️", check: () => (inventory['ryzen_pc'] || 0) >= 5 },
-            { id: "knife_master", title: "Твой шанс на большой дроп", desc: "Выбить 'Нож Буба Дроп'", icon: "🔪", check: () => (inventory['buba_knife'] || 0) >= 1 },
-            { id: "secret_both", title: "За гранью реальности", desc: "Выбить абсолютно все Секретные предметы", icon: "🌌", check: () => items.filter(i => i.rarity === 'secret').every(i => (inventory[i.id] || 0) >= 1) },
-            { id: "trash_collector", title: "Гора мусора", desc: "Собрать суммарно 50 Обычных предметов", icon: "🗑️", check: () => (stats.common || 0) >= 50 },
-            { id: "legendary_5", title: "Настоящий Босс", desc: "Выбить 5 Легендарных предметов", icon: "🏆", check: () => (stats.legendary || 0) >= 5 },
-            { id: "mystic_3", title: "Мифический магнат", desc: "Выбить 3 Мифических предмета", icon: "🌟", check: () => (stats.mystic || 0) >= 3 },
-            { id: "secret_3", title: "Тайное Общество", desc: "Выбить 3 Секретных предмета", icon: "🔮", check: () => (stats.secret || 0) >= 3 },
-
-            { id: "radio_maestro", title: "Маэстро радиоволн", desc: "Собрать Радио \"Буба FM\" и Оркестр буб", icon: "📻", check: () => (inventory['buba_fm'] || 0) >= 1 && (inventory['lava_orchestra'] || 0) >= 1 },
-            { id: "burnt_ashes", title: "Пепелище", desc: "Собрать Сгоревший дом бубы", icon: "🔥", check: () => (inventory['burnt_house'] || 0) >= 1 },
-            { id: "energy_giant", title: "Энергетический гигант", desc: "Выбить Ядерно-физическую гидро-электро АЭС", icon: "💥", check: () => (inventory['nuclear_hpp'] || 0) >= 1 },
-            { id: "napkin_hoarder", title: "Полный набор салфеток", desc: "Собрать 3 шт. \"Так так так, салфетки\"", icon: "🧻", check: () => (inventory['napkins'] || 0) >= 3 },
-            { id: "fandom_power", title: "Настоящий фан-клуб", desc: "Собрать Свити фокс и зайка джуди хопс", icon: "🦊", check: () => (inventory['sweetie_judy'] || 0) >= 1 },
-            { id: "heavy_gunner", title: "Тяжёлое вооружение", desc: "Выбить Пулемёт \"Lewis\"", icon: "🔫", check: () => (inventory['lewis_gun'] || 0) >= 1 },
-
-            { id: "oil_debt_ach", title: "Нефтяной Магнат", desc: "Выбить 'Долг за нефть'", icon: "📜", check: () => (inventory['oil_debt'] || 0) >= 1 },
-            { id: "money_briefcase_ach", title: "Миллионер", desc: "Выбить 'Чемодан с деньгами'", icon: "🧳", check: () => (inventory['money_briefcase'] || 0) >= 1 },
-            { id: "terrorist_buba_ach", title: "Опасный Пацан", desc: "Выбить 'Буба-террорист'", icon: "✈️", check: () => (inventory['terrorist_buba'] || 0) >= 1 },
-            { id: "buba_guest_1337_ach", title: "Старая Школа", desc: "Выбить 'Буба гость 1337'", icon: "👊", check: () => (inventory['buba_guest_1337'] || 0) >= 1 },
-            { id: "buba_himself_ach", title: "Встреча с Боссом", desc: "Выбить самого Бубу!", icon: "🏆", check: () => (inventory['buba_himself'] || 0) >= 1 },
-            { id: "spins_300", title: "Сверхскорость", desc: "Сделать 300 спинов в крутилке", icon: "⚡", check: () => stats.total >= 300 },
-            { id: "collector_35", title: "Богатый Гардероб", desc: "Собрать 35 разных предметов", icon: "🏛️", check: () => Object.keys(inventory).length >= 35 },
-            { id: "legendary_10", title: "Легендарный Сборщик", desc: "Собрать суммарно 10 Легендарных предметов", icon: "🥇", check: () => (stats.legendary || 0) >= 10 },
-            { id: "mystic_5", title: "Мифический Повелитель", desc: "Собрать 5 Мифических предметов", icon: "🔮", check: () => (stats.mystic || 0) >= 5 },
-            { id: "achievements_20", title: "Собиратель Времени", desc: "Разблокировать 20 любых достижений", icon: "🎖️", check: () => unlockedAch.length >= 20 },
-
-            { id: "all_achievements", title: "Абсолютная Легенда", desc: "Получить ВСЕ остальные достижения в игре!", icon: "🌟", check: () => {
-                const otherAchs = achievementsList.filter(a => a.id !== 'all_achievements');
-                return otherAchs.every(a => unlockedAch.includes(a.id));
-            }}
-        ];
-
-        function loadStorage(key, defaultVal) {
-            try {
-                const val = localStorage.getItem(key);
-                return val ? JSON.parse(val) : defaultVal;
-            } catch (e) { return defaultVal; }
-        }
-
-        let inventory = loadStorage('buba_inventory_v10', {});
-        let stats = loadStorage('buba_stats_v10', { total: 0, common: 0, rare: 0, epic: 0, legendary: 0, mystic: 0, secret: 0 });
-        let unlockedAch = loadStorage('buba_ach_v10', []);
-        let victoryTriggered = loadStorage('buba_victory_v10', false);
-
-        let isSpinning = false;
-        const cardWidth = 118;
-
-        let tape, spinBtn, winMessage, catalogGrid, catalogProgress, roulette, flashOverlay;
-        let audioCtx, musicTimer;
-
-        window.addEventListener('DOMContentLoaded', () => {
-            tape = document.getElementById('tape');
-            spinBtn = document.getElementById('spin-btn');
-            winMessage = document.getElementById('win-message');
-            catalogGrid = document.getElementById('catalog-grid');
-            catalogProgress = document.getElementById('catalog-progress');
-            roulette = document.getElementById('roulette');
-            flashOverlay = document.getElementById('flash-overlay');
-
-            renderCatalog();
-            updateThemes();
-            updateTotalGameProgress();
-        });
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-            document.getElementById('sidebar-overlay').classList.toggle('active');
-        }
-
-        function toggleSection(elementId, btn) {
-            const el = document.getElementById(elementId);
-            if (el) {
-                el.classList.toggle('collapsed');
-                btn.innerText = el.classList.contains('collapsed') ? '►' : '▼';
-            }
-        }
-
-        function getAudioContext() {
-            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            return audioCtx;
-        }
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playTickSound() {
-            try {
-                const ctx = getAudioContext();
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(180, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.04);
-                gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                gain.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.04);
-                osc.connect(gain); gain.connect(ctx.destination);
-                osc.start(); osc.stop(ctx.currentTime + 0.04);
-            } catch(e) {}
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(350 + Math.random() * 100, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.04);
         }
 
         function playWinSound(rarity) {
-            try {
-                const ctx = getAudioContext();
-                let notes = [261];
-                if (rarity === 'rare') notes = [330, 392];
-                if (rarity === 'epic') notes = [349, 440, 523];
-                if (rarity === 'legendary') notes = [440, 554, 659, 880];
-                if (rarity === 'mystic') notes = [523, 659, 783, 1046, 1318];
-                if (rarity === 'secret') notes = [440, 554, 659, 880, 1108, 1318, 1760];
-
-                notes.forEach((freq, idx) => {
-                    const osc = ctx.createOscillator();
-                    const gain = ctx.createGain();
-                    osc.type = rarity === 'secret' ? 'sawtooth' : 'sine';
-                    osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
-                    gain.gain.setValueAtTime(0.25, ctx.currentTime + idx * 0.08);
-                    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.4);
-                    osc.connect(gain); gain.connect(ctx.destination);
-                    osc.start(ctx.currentTime + idx * 0.08);
-                    osc.stop(ctx.currentTime + idx * 0.08 + 0.4);
-                });
-            } catch(e) {}
-        }
-
-        function toggleBgMusic(enable) {
-            if (!enable) {
-                if (musicTimer) clearTimeout(musicTimer);
-                return;
-            }
-
-            const ctx = getAudioContext();
-            
-            const melody = [
-                261.63, 329.63, 392.00, 523.25, 392.00, 329.63, 261.63, 329.63,
-                220.00, 261.63, 329.63, 440.00, 329.63, 261.63, 220.00, 261.63,
-                174.61, 220.00, 261.63, 349.23, 261.63, 220.00, 174.61, 220.00,
-                196.00, 246.94, 293.66, 392.00, 293.66, 246.94, 196.00, 246.94
-            ];
-
-            const bassline = [130.81, 110.00, 87.31, 98.00];
-
-            let step = 0;
-
-            function playNextStep() {
-                if (!document.getElementById('bg-music-toggle')?.checked) return;
-
-                const t = ctx.currentTime;
-                
-                const note = melody[step % melody.length];
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(note, t);
-                gain.gain.setValueAtTime(0.025, t);
-                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-                osc.connect(gain); gain.connect(ctx.destination);
-                osc.start(t); osc.stop(t + 0.12);
-
-                if (step % 4 === 0) {
-                    const bassNote = bassline[Math.floor((step / 8) % bassline.length)];
-                    const bassOsc = ctx.createOscillator();
-                    const bassGain = ctx.createGain();
-                    bassOsc.type = 'triangle';
-                    bassOsc.frequency.setValueAtTime(bassNote, t);
-                    bassGain.gain.setValueAtTime(0.06, t);
-                    bassGain.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
-                    bassOsc.connect(bassGain); bassGain.connect(ctx.destination);
-                    bassOsc.start(t); bassOsc.stop(t + 0.28);
-                }
-
-                step++;
-                musicTimer = setTimeout(playNextStep, 130);
-            }
-
-            playNextStep();
-        }
-
-        function triggerEffects(rarity) {
-            if (rarity === 'legendary') confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
-            else if (rarity === 'mystic') confetti({ particleCount: 140, spread: 100, origin: { y: 0.6 } });
-            else if (rarity === 'secret') {
-                if (flashOverlay) {
-                    flashOverlay.style.opacity = '0.85';
-                    setTimeout(() => { flashOverlay.style.opacity = '0'; }, 180);
-                }
-                var duration = 3.5 * 1000; var end = Date.now() + duration;
-                (function frame() {
-                  confetti({ particleCount: 8, angle: 60, spread: 60, origin: { x: 0 } });
-                  confetti({ particleCount: 8, angle: 120, spread: 60, origin: { x: 1 } });
-                  if (Date.now() < end) requestAnimationFrame(frame);
-                })();
-            }
-        }
-
-        function hasAllRarity(rarity) {
-            const rarityItems = items.filter(i => i.rarity === rarity);
-            return rarityItems.every(i => (inventory[i.id] || 0) > 0);
-        }
-
-        function isThemeUnlocked(theme) {
-            if (theme === 'rare') return hasAllRarity('rare');
-            if (theme === 'epic') return hasAllRarity('epic');
-            if (theme === 'legendary') return hasAllRarity('legendary');
-            if (theme === 'mystic') return hasAllRarity('mystic');
-            if (theme === 'secret') return hasAllRarity('secret');
-            if (theme === 'emerald') return unlockedAch.length >= 15;
-            if (theme === 'aquamarine') return (stats.total || 0) >= 150;
-            if (theme === 'cyberpunk') return Object.keys(inventory).length >= 30;
-            if (theme === 'absolute') return (stats.secret || 0) >= 1;
-            return true;
-        }
-
-        function setTheme(theme) {
-            if (theme !== 'default' && !isThemeUnlocked(theme)) return;
-
-            document.body.className = theme === 'default' ? '' : `theme-${theme}`;
-            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-            const targetBtn = document.getElementById(`theme-${theme}`);
-            if (targetBtn) targetBtn.classList.add('active');
-            updateTotalGameProgress();
-        }
-
-        function updateThemes() {
-            const themeList = ['rare', 'epic', 'legendary', 'mystic', 'secret', 'emerald', 'aquamarine', 'cyberpunk', 'absolute'];
-            themeList.forEach(t => {
-                const btn = document.getElementById(`theme-${t}`);
-                if (btn) {
-                    if (isThemeUnlocked(t)) btn.classList.remove('locked');
-                    else btn.classList.add('locked');
-                }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const tones = {
+                common: [400, 500],
+                rare: [500, 650, 800],
+                epic: [600, 750, 900, 1100],
+                legendary: [523.25, 659.25, 783.99, 1046.50],
+                mythic: [440, 554.37, 659.25, 880, 1108.73],
+                secret: [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77, 1046.50]
+            };
+            const selectedTones = tones[rarity] || tones.common;
+            selectedTones.forEach((freq, i) => {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = (rarity === 'secret' || rarity === 'mythic') ? 'triangle' : 'sine';
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.08);
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime + i * 0.08);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.08 + 0.3);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(audioCtx.currentTime + i * 0.08);
+                osc.stop(audioCtx.currentTime + i * 0.08 + 0.3);
             });
         }
+
+        const rarityNames = {
+            common: 'Обычный',
+            rare: 'Редкий',
+            epic: 'Эпический',
+            legendary: 'Легендарный',
+            mythic: 'Мифический',
+            secret: 'Секретный'
+        };
+
+        // Стандартные веса шансов
+        const baseRarityWeights = {
+            common: 50,
+            rare: 28,
+            epic: 13,
+            legendary: 6,
+            mythic: 2.5,
+            secret: 0.5
+        };
+
+        // Повышенные веса шансов при покупке УДАЧИ
+        const boostedRarityWeights = {
+            common: 20,
+            rare: 35,
+            epic: 25,
+            legendary: 12,
+            mythic: 6,
+            secret: 2
+        };
+
+        const items = [
+            // Обычные
+            { id: 0, name: "Супер пупер зумерские чипсы лава лава мать шалава", file: "Drops/IMG_7617.PNG", rarity: "common" },
+            { id: 1, name: "Дохлый генка", file: "Drops/IMG_7632.PNG", rarity: "common" },
+            { id: 2, name: "Пиво бубы", file: "Drops/IMG_7652.PNG", rarity: "common" },
+            { id: 3, name: "Буба петух", file: "Drops/IMG_7654.PNG", rarity: "common" },
+            { id: 4, name: "Привет петя", file: "Drops/IMG_7612.PNG", rarity: "common" },
+            { id: 5, name: "Шаурма с мясом из светофора", file: "Drops/IMG_7651.PNG", rarity: "common" },
+
+            // Редкие
+            { id: 6, name: "Копьё бубы", file: "Drops/IMG_7621.PNG", rarity: "rare" },
+            { id: 7, name: "Дробовик бубы", file: "Drops/IMG_7622.PNG", rarity: "rare" },
+            { id: 8, name: "Чёрный буба на плантациях", file: "Drops/IMG_7628.PNG", rarity: "rare" },
+            { id: 9, name: "Латте с ягодами жырлы бырлы хырлы хырлы", file: "Drops/IMG_7633.PNG", rarity: "rare" },
+            { id: 10, name: "Гладиатор буба", file: "Drops/IMG_7634.PNG", rarity: "rare" },
+            { id: 11, name: "Буба в химзащите", file: "Drops/IMG_7655.PNG", rarity: "rare" },
+            { id: 12, name: "Папа любит чикен ган", file: "Drops/IMG_7661.PNG", rarity: "rare" },
+            { id: 13, name: "Избиение охранниками", file: "Drops/IMG_7664.PNG", rarity: "rare" },
+            { id: 14, name: "Буба с перчаткой", file: "Drops/IMG_7615.PNG", rarity: "rare" },
+            { id: 15, name: "Буба из фореста", file: "Drops/IMG_7636.PNG", rarity: "rare" },
+            { id: 16, name: "ПейДей Бубы", file: "Drops/IMG_7647.PNG", rarity: "rare" },
+
+            // Эпические
+            { id: 17, name: "Буба два раза", file: "Drops/IMG_7614.PNG", rarity: "epic" },
+            { id: 18, name: "Ryzen, родненький", file: "Drops/IMG_7616.PNG", rarity: "epic" },
+            { id: 19, name: "Поздравление буб", file: "Drops/IMG_7625.PNG", rarity: "epic" },
+            { id: 20, name: "Компьютер бубы", file: "Drops/IMG_7639.PNG", rarity: "epic" },
+            { id: 21, name: "Уголок даунизма", file: "Drops/IMG_7640.PNG", rarity: "epic" },
+            { id: 22, name: "Платформа с шариками", file: "Drops/IMG_7643.PNG", rarity: "epic" },
+            { id: 23, name: "Духи с запахом бубы", file: "Drops/IMG_7650.PNG", rarity: "epic" },
+            { id: 24, name: "ВТБ буба", file: "Drops/IMG_7659.PNG", rarity: "epic" },
+            { id: 25, name: "Буба начальник смены", file: "Drops/IMG_7663.PNG", rarity: "epic" },
+            { id: 26, name: "МОИ КУБИКИ СУКА", file: "Drops/IMG_7618.PNG", rarity: "epic" },
+            { id: 27, name: "Трубка капитана бубы", file: "Drops/IMG_7626.PNG", rarity: "epic" },
+            { id: 28, name: "Подлодка \"Бiмба\"", file: "Drops/IMG_7627.PNG", rarity: "epic" },
+            { id: 29, name: "Дом бубы", file: "Drops/IMG_7630.PNG", rarity: "epic" },
+            { id: 30, name: "Боевой оркестр буб", file: "Drops/IMG_7645.PNG", rarity: "epic" },
+            { id: 31, name: "Буба Террорист", file: "Drops/IMG_7653.PNG", rarity: "epic" },
+
+            // Легендарные
+            { id: 32, name: "Спермитто Дилдако", file: "Drops/IMG_7613.PNG", rarity: "legendary" },
+            { id: 33, name: "Долг за нефть", file: "Drops/IMG_7619.PNG", rarity: "legendary" },
+            { id: 34, name: "Кейс с деньгами", file: "Drops/IMG_7624.PNG", rarity: "legendary" },
+            { id: 35, name: "Урановая палочка", file: "Drops/IMG_7629.PNG", rarity: "legendary" },
+            { id: 36, name: "КулbК1д", file: "Drops/IMG_7635.PNG", rarity: "legendary" },
+            { id: 37, name: "Мачета бубы слешера", file: "Drops/IMG_7637.PNG", rarity: "legendary" },
+            { id: 38, name: "Почему он круглый", file: "Drops/IMG_7658.PNG", rarity: "legendary" },
+            { id: 39, name: "Партия Котости и Бубы", file: "Drops/IMG_7660.PNG", rarity: "legendary" },
+            { id: 40, name: "Порветный туз", file: "Drops/IMG_7641.PNG", rarity: "legendary" },
+            { id: 41, name: "Кирасасир", file: "Drops/IMG_7646.PNG", rarity: "legendary" },
+            { id: 42, name: "БТР и буба", file: "Drops/IMG_7657.PNG", rarity: "legendary" },
+
+            // Мифические
+            { id: 43, name: "Инвалидная коляска бубы", file: "Drops/IMG_7620.PNG", rarity: "mythic" },
+            { id: 44, name: "Детский стендап", file: "Drops/IMG_7631.PNG", rarity: "mythic" },
+            { id: 45, name: "Свити фокс и зайка джуди хопс", file: "Drops/IMG_7644.PNG", rarity: "mythic" },
+            { id: 46, name: "я УЖЕ КРАСНЫЙ", file: "Drops/IMG_7656.PNG", rarity: "mythic" },
+            { id: 47, name: "\"Льюис\"", file: "Drops/IMG_7642.PNG", rarity: "mythic" },
+            { id: 48, name: "Ложка бубы", file: "Drops/IMG_7648.PNG", rarity: "mythic" },
+            { id: 49, name: "Прости сыр может спутали меня вы с кем", file: "Drops/IMG_7649.PNG", rarity: "mythic" },
+
+            // Секретные
+            { id: 50, name: "тiкi тiкi тiкi", file: "Drops/IMG_7662.PNG", rarity: "secret" }
+        ];
+
+        const achievementsList = [
+            { id: "spin_1", title: "Первый шаг", desc: "Сделайте вашу самую первую крутку", icon: "🎲" },
+            { id: "spin_10", title: "Любитель Буб", desc: "Сделайте 10 круток", icon: "🎰" },
+            { id: "spin_50", title: "Крутильщик", desc: "Сделайте 50 круток", icon: "🌀" },
+            { id: "spin_100", title: "Зависимый", desc: "Сделайте 100 круток", icon: "🔥" },
+            { id: "spin_250", title: "Мастер Рулетки", desc: "Сделайте 250 круток", icon: "💎" },
+            { id: "spin_500", title: "Лудоман высшей пробы", desc: "Сделайте 500 круток", icon: "👑" },
+            
+            { id: "col_1", title: "Начало коллекции", desc: "Откройте свой первый уникальный предмет", icon: "📦" },
+            { id: "col_10", title: "Коллекционер-новичок", desc: "Соберите 10 уникальных предметов", icon: "🎒" },
+            { id: "col_25", title: "Половина пути", desc: "Соберите 25 уникальных предметов", icon: "🏆" },
+            { id: "col_45", title: "Почти всё!", desc: "Соберите 45 уникальных предметов", icon: "⭐" },
+            { id: "col_all", title: "Властелин Буб", desc: "Соберите ВСЕ 51 предмет в коллекции!", icon: "🌟" },
+
+            { id: "drop_common", title: "Серость", desc: "Выбейте любой обычный предмет", icon: "⚪" },
+            { id: "drop_rare", title: "Уже что-то", desc: "Выбейте редкий предмет", icon: "🔵" },
+            { id: "drop_epic", title: "Фиолетовый шум", desc: "Выбейте эпический предмет", icon: "🟣" },
+            { id: "drop_legendary", title: "Золотой дождь", desc: "Выбейте легендарный предмет", icon: "🟡" },
+            { id: "drop_mythic", title: "Мифический фарт", desc: "Выбейте мифический предмет", icon: "🔴" },
+            { id: "drop_secret", title: "ТIКI ТIКI ТIКI!", desc: "Выбейте секретный предмет!", icon: "🌈" },
+
+            { id: "dup_5", title: "Запасливый", desc: "Накопите 5 штук одного предмета", icon: "📊" },
+            { id: "dup_10", title: "Завод завален", desc: "Накопите 10 штук одного предмета", icon: "🏭" },
+            { id: "dup_25", title: "Оптовик", desc: "Накопите 25 штук одного предмета", icon: "📦" },
+
+            { id: "theme_change", title: "Дизайнер", desc: "Смените тему оформления игры", icon: "🎨" },
+            { id: "export_code", title: "Бэкапщик", desc: "Скопируйте код экспорта прогресса", icon: "💾" },
+            { id: "perfume", title: "Парфюмер", desc: "Выбейте \"Духи с запахом бубы\"", icon: "🧪" },
+            { id: "ryzen", title: "Сборщик ПК", desc: "Выбейте \"Ryzen, родненький\"", icon: "💻" },
+            { id: "standup", title: "Юморист", desc: "Выбейте \"Детский стендап\"", icon: "🎤" }
+        ];
+
+        let unlockedItems = JSON.parse(localStorage.getItem('buba_collection') || '[]');
+        let itemCounts = JSON.parse(localStorage.getItem('buba_counts') || '{}');
+        let unlockedAch = JSON.parse(localStorage.getItem('buba_achievements') || '[]');
+        let totalSpins = parseInt(localStorage.getItem('buba_total_spins') || '0');
+        let coins = parseInt(localStorage.getItem('buba_coins') || '0');
+        let luckSpinsLeft = parseInt(localStorage.getItem('buba_luck_spins') || '0');
+        let rarityStats = JSON.parse(localStorage.getItem('buba_rarity_stats') || '{"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0}');
+        let currentTheme = localStorage.getItem('buba_theme') || 'theme-aero';
+        document.body.className = currentTheme;
+
+        const strip = document.getElementById('strip');
+        const btn = document.getElementById('btn');
+        const totalCards = 50;
+        const winningIndex = 35;
+
+        updateUI();
+
+        function updateUI() {
+            document.getElementById('coinsCount').innerText = coins;
+            localStorage.setItem('buba_coins', coins);
+
+            const luckBtn = document.getElementById('luckBtn');
+            const luckBadge = document.getElementById('luckBadge');
+            
+            if (luckSpinsLeft > 0) {
+                luckBtn.style.display = 'none';
+                luckBadge.style.display = 'block';
+                document.getElementById('luckSpinsLeft').innerText = luckSpinsLeft;
+            } else {
+                luckBtn.style.display = 'block';
+                luckBadge.style.display = 'none';
+                luckBtn.disabled = coins < 50;
+            }
+            localStorage.setItem('buba_luck_spins', luckSpinsLeft);
+        }
+
+        function buyLuckBoost() {
+            if (coins >= 50 && luckSpinsLeft === 0) {
+                coins -= 50;
+                luckSpinsLeft = 3;
+                updateUI();
+                alert('✨ Удача активирована! На следующие 3 прокрутки шансы на редкие вещи значительно повышены!');
+            }
+        }
+
+        function getWeightedRandomItem() {
+            const weights = luckSpinsLeft > 0 ? boostedRarityWeights : baseRarityWeights;
+            let totalWeight = 0;
+            items.forEach(item => totalWeight += weights[item.rarity]);
+            
+            let random = Math.random() * totalWeight;
+            for (let item of items) {
+                const weight = weights[item.rarity];
+                if (random < weight) {
+                    return item;
+                }
+                random -= weight;
+            }
+            return items[0];
+        }
+
+        function createStrip() {
+            strip.innerHTML = '';
+            for (let i = 0; i < totalCards; i++) {
+                const item = getWeightedRandomItem();
+                let card = document.createElement('div');
+                card.className = `card rarity-${item.rarity}`;
+                card.dataset.id = item.id;
+                
+                card.innerHTML = `
+                    <img src="${item.file}" alt="${item.name}">
+                    <span class="card-name">${item.name}</span>
+                    <span class="rarity-tag tag-${item.rarity}">${rarityNames[item.rarity]}</span>
+                `;
+                strip.appendChild(card);
+            }
+        }
+
+        createStrip();
 
         function checkAchievements() {
-            achievementsList.forEach(ach => {
-                if (!unlockedAch.includes(ach.id) && ach.check()) {
-                    unlockedAch.push(ach.id);
-                    localStorage.setItem('buba_ach_v10', JSON.stringify(unlockedAch));
-                    showAchievementToast(ach);
+            function grant(id) {
+                if (!unlockedAch.includes(id)) {
+                    unlockedAch.push(id);
+                    localStorage.setItem('buba_achievements', JSON.stringify(unlockedAch));
+                    const ach = achievementsList.find(a => a.id === id);
+                    if (ach) showToast(ach);
                 }
+            }
+
+            if (totalSpins >= 1) grant("spin_1");
+            if (totalSpins >= 10) grant("spin_10");
+            if (totalSpins >= 50) grant("spin_50");
+            if (totalSpins >= 100) grant("spin_100");
+            if (totalSpins >= 250) grant("spin_250");
+            if (totalSpins >= 500) grant("spin_500");
+
+            const colLen = unlockedItems.length;
+            if (colLen >= 1) grant("col_1");
+            if (colLen >= 10) grant("col_10");
+            if (colLen >= 25) grant("col_25");
+            if (colLen >= 45) grant("col_45");
+            if (colLen >= 51) grant("col_all");
+
+            Object.values(itemCounts).forEach(cnt => {
+                if (cnt >= 5) grant("dup_5");
+                if (cnt >= 10) grant("dup_10");
+                if (cnt >= 25) grant("dup_25");
             });
-            renderAchievements();
         }
 
-        function showAchievementToast(ach) {
+        function showToast(ach) {
             const toast = document.getElementById('achievement-toast');
-            if (!toast) return;
-            document.getElementById('toast-icon').innerText = ach.icon;
-            document.getElementById('toast-desc').innerText = ach.title;
+            document.getElementById('toastIcon').innerText = ach.icon;
+            document.getElementById('toastDesc').innerText = ach.title + ": " + ach.desc;
             toast.classList.add('show');
-            playWinSound('legendary');
-            setTimeout(() => { toast.classList.remove('show'); }, 4000);
+            setTimeout(() => toast.classList.remove('show'), 3500);
         }
 
-        function renderAchievements() {
-            const grid = document.getElementById('achievements-grid');
-            if (!grid) return;
-            grid.innerHTML = "";
-            let unlockedCount = 0;
+        function registerItemWin(id) {
+            const item = items.find(i => i.id === id);
+            if (!unlockedItems.includes(id)) {
+                unlockedItems.push(id);
+                localStorage.setItem('buba_collection', JSON.stringify(unlockedItems));
+            }
+            itemCounts[id] = (itemCounts[id] || 0) + 1;
+            localStorage.setItem('buba_counts', JSON.stringify(itemCounts));
+            
+            if (item) {
+                playWinSound(item.rarity);
+                rarityStats[item.rarity] = (rarityStats[item.rarity] || 0) + 1;
+                localStorage.setItem('buba_rarity_stats', JSON.stringify(rarityStats));
+
+                if (item.rarity === "common") unlockSingleAch("drop_common");
+                if (item.rarity === "rare") unlockSingleAch("drop_rare");
+                if (item.rarity === "epic") unlockSingleAch("drop_epic");
+                if (item.rarity === "legendary") unlockSingleAch("drop_legendary");
+                if (item.rarity === "mythic") unlockSingleAch("drop_mythic");
+                if (item.rarity === "secret") unlockSingleAch("drop_secret");
+
+                if (item.id === 23) unlockSingleAch("perfume");
+                if (item.id === 18) unlockSingleAch("ryzen");
+                if (item.id === 44) unlockSingleAch("standup");
+            }
+
+            checkAchievements();
+        }
+
+        function unlockSingleAch(id) {
+            if (!unlockedAch.includes(id)) {
+                unlockedAch.push(id);
+                localStorage.setItem('buba_achievements', JSON.stringify(unlockedAch));
+                const ach = achievementsList.find(a => a.id === id);
+                if (ach) showToast(ach);
+            }
+        }
+
+        function spin() {
+            btn.disabled = true;
+            totalSpins++;
+            coins += 1; // +1 монета за спин
+            
+            if (luckSpinsLeft > 0) {
+                luckSpinsLeft--;
+            }
+
+            localStorage.setItem('buba_total_spins', totalSpins);
+            updateUI();
+
+            strip.style.transition = 'none';
+            strip.style.left = '0px';
+            createStrip();
+
+            setTimeout(() => {
+                const cardWidth = 115;
+                const windowWidth = 720;
+                
+                const targetLeft = -(winningIndex * cardWidth) + (windowWidth / 2) - (cardWidth / 2);
+                const randomOffset = (Math.random() - 0.5) * 40;
+                
+                strip.style.transition = 'left 4s cubic-bezier(0.08, 0.82, 0.17, 1)';
+                strip.style.left = (targetLeft + randomOffset) + 'px';
+
+                let tickInterval = setInterval(() => {
+                    playTickSound();
+                }, 120);
+
+                setTimeout(() => clearInterval(tickInterval), 3200);
+
+                setTimeout(() => {
+                    const winningCardElement = strip.children[winningIndex];
+                    if (winningCardElement) {
+                        const wonId = parseInt(winningCardElement.dataset.id);
+                        registerItemWin(wonId);
+                    }
+                    btn.disabled = false;
+                }, 4000);
+            }, 50);
+        }
+
+        function openCollection() {
+            const grid = document.getElementById('collectionGrid');
+            const stats = document.getElementById('collectionStats');
+            grid.innerHTML = '';
+
+            stats.innerText = `Открыто: ${unlockedItems.length} / ${items.length}`;
+
+            items.forEach(item => {
+                const isUnlocked = unlockedItems.includes(item.id);
+                const count = itemCounts[item.id] || 0;
+                const div = document.createElement('div');
+                div.className = `collection-item ${isUnlocked ? '' : 'locked'}`;
+
+                if (isUnlocked) {
+                    div.innerHTML = `
+                        <img src="${item.file}" alt="${item.name}">
+                        <span class="rarity-tag tag-${item.rarity}">${rarityNames[item.rarity]}</span>
+                        <span class="item-title">${item.name}</span>
+                        <div class="count-badge">x${count}</div>
+                    `;
+                } else {
+                    div.innerHTML = `
+                        <div class="lock-icon">🔒</div>
+                        <span class="rarity-tag tag-${item.rarity}">${rarityNames[item.rarity]}</span>
+                        <span class="item-title">Закрыто</span>
+                        <div class="count-badge" style="opacity:0.2;">x0</div>
+                    `;
+                }
+                grid.appendChild(div);
+            });
+
+            document.getElementById('collectionModal').style.display = 'flex';
+        }
+
+        function openAchievements() {
+            const grid = document.getElementById('achievementsGrid');
+            const stats = document.getElementById('achievementsStats');
+            grid.innerHTML = '';
+
+            stats.innerText = `Выполнено: ${unlockedAch.length} / ${achievementsList.length}`;
 
             achievementsList.forEach(ach => {
-                const isUnlocked = unlockedAch.includes(ach.id);
-                if (isUnlocked) unlockedCount++;
+                const isDone = unlockedAch.includes(ach.id);
+                const div = document.createElement('div');
+                div.className = `achievement-card ${isDone ? '' : 'locked'}`;
 
-                const card = document.createElement('div');
-                card.className = `achievement-card ${isUnlocked ? 'unlocked' : ''}`;
-                card.innerHTML = `
+                div.innerHTML = `
                     <div class="ach-icon">${ach.icon}</div>
                     <div>
                         <div class="ach-title">${ach.title}</div>
                         <div class="ach-desc">${ach.desc}</div>
                     </div>
                 `;
-                grid.appendChild(card);
+                grid.appendChild(div);
             });
 
-            const achProgress = document.getElementById('ach-progress');
-            if (achProgress) achProgress.innerText = `${unlockedCount} / ${achievementsList.length}`;
+            document.getElementById('achievementsModal').style.display = 'flex';
         }
 
-        function updateStatsUI() {
-            const el = id => document.getElementById(id);
-            if (el('stat-total')) el('stat-total').innerText = stats.total || 0;
-            if (el('stat-common')) el('stat-common').innerText = stats.common || 0;
-            if (el('stat-rare')) el('stat-rare').innerText = stats.rare || 0;
-            if (el('stat-epic')) el('stat-epic').innerText = stats.epic || 0;
-            if (el('stat-legendary')) el('stat-legendary').innerText = stats.legendary || 0;
-            if (el('stat-mystic')) el('stat-mystic').innerText = stats.mystic || 0;
-            if (el('stat-secret')) el('stat-secret').innerText = stats.secret || 0;
-            updateThemes();
+        function openThemes() {
+            document.getElementById('themesModal').style.display = 'flex';
         }
 
-        function updateTotalGameProgress() {
-            const unlockedItems = items.filter(i => (inventory[i.id] || 0) > 0).length;
-            const totalItems = items.length;
+        function openDataModal() {
+            // Расчет статистики
+            const colPercent = (unlockedItems.length / items.length) * 100;
+            const achPercent = (unlockedAch.length / achievementsList.length) * 100;
+            const totalPercent = Math.round((colPercent + achPercent) / 2);
 
-            const unlockedAchs = unlockedAch.length;
-            const totalAchs = achievementsList.length;
+            document.getElementById('totalPercent').innerText = `${totalPercent}%`;
+            document.getElementById('totalProgressBar').style.width = `${totalPercent}%`;
 
-            const allThemesList = ['rare', 'epic', 'legendary', 'mystic', 'secret', 'emerald', 'aquamarine', 'cyberpunk', 'absolute'];
-            const unlockedThemes = allThemesList.filter(t => isThemeUnlocked(t)).length + 1;
-            const totalThemes = allThemesList.length + 1;
+            document.getElementById('statTotalSpins').innerText = totalSpins;
+            document.getElementById('statCoins').innerText = `${coins} 🪙`;
+            document.getElementById('statCollection').innerText = `${unlockedItems.length} / ${items.length}`;
+            document.getElementById('statAchievements').innerText = `${unlockedAch.length} / ${achievementsList.length}`;
 
-            const totalEarned = unlockedItems + unlockedAchs + unlockedThemes;
-            const totalPossible = totalItems + totalAchs + totalThemes;
+            document.getElementById('statCommon').innerText = rarityStats.common || 0;
+            document.getElementById('statRare').innerText = rarityStats.rare || 0;
+            document.getElementById('statEpic').innerText = rarityStats.epic || 0;
+            document.getElementById('statLegendary').innerText = rarityStats.legendary || 0;
+            document.getElementById('statMythic').innerText = rarityStats.mythic || 0;
+            document.getElementById('statSecret').innerText = rarityStats.secret || 0;
 
-            const percent = Math.floor((totalEarned / totalPossible) * 100);
-
-            const totalPctEl = document.getElementById('game-total-pct');
-            const progressBarFill = document.getElementById('game-progress-bar');
-
-            if (totalPctEl) totalPctEl.innerText = `${percent}%`;
-            if (progressBarFill) progressBarFill.style.width = `${percent}%`;
-
-            if (percent >= 100 && !victoryTriggered) {
-                victoryTriggered = true;
-                localStorage.setItem('buba_victory_v10', JSON.stringify(true));
-                trigger100PercentVictory();
-            }
-        }
-
-        function trigger100PercentVictory() {
-            setTimeout(() => {
-                const modal = document.getElementById('victory-modal');
-                if (modal) modal.classList.add('active');
-                playWinSound('secret');
-                confetti({ particleCount: 250, spread: 140, origin: { y: 0.5 } });
-            }, 600);
-        }
-
-        function closeVictoryModal() {
-            const modal = document.getElementById('victory-modal');
-            if (modal) modal.classList.remove('active');
-        }
-
-        function renderCatalog() {
-            if (!catalogGrid) return;
-            catalogGrid.innerHTML = "";
-            let unlockedCount = 0;
-
-            items.forEach(item => {
-                const count = inventory[item.id] || 0;
-                const isUnlocked = count > 0;
-                if (isUnlocked) unlockedCount++;
-
-                const card = document.createElement('div');
-                card.className = `catalog-item ${isUnlocked ? 'unlocked' : 'locked'} ${item.rarity === 'secret' && isUnlocked ? 'secret' : ''}`;
-                if (isUnlocked && item.rarity !== 'secret') { card.style.borderColor = item.color; }
-
-                card.innerHTML = `
-                    ${isUnlocked ? `<div class="catalog-count">x${count}</div>` : ''}
-                    <div class="catalog-icon">${isUnlocked ? item.icon : '🔒'}</div>
-                    <div class="catalog-name">${isUnlocked ? item.name : '???'}</div>
-                `;
-                catalogGrid.appendChild(card);
-            });
-
-            if (catalogProgress) catalogProgress.innerText = `${unlockedCount} / ${items.length}`;
-
-            updateStatsUI();
-            checkAchievements();
-            updateTotalGameProgress();
-        }
-
-        function getRandomItem() {
-            const totalWeight = items.reduce((sum, item) => sum + item.weight, 0);
-            let random = Math.random() * totalWeight;
-            for (let item of items) {
-                if (random < item.weight) return item;
-                random -= item.weight;
-            }
-        }
-
-        function createCardElement(item) {
-            const card = document.createElement('div');
-            card.className = `card ${item.rarity}`;
-            if (item.rarity !== 'secret') { card.style.borderColor = item.color; }
-            card.innerHTML = `<div class="card-icon">${item.icon}</div><div class="card-name">${item.name}</div>`;
-            return card;
-        }
-
-        function spin() {
-            if (isSpinning || !tape || !spinBtn) return;
-            isSpinning = true;
-            spinBtn.disabled = true;
-            if (winMessage) {
-                winMessage.innerText = "";
-                winMessage.style.transform = "scale(1)";
-            }
-
-            const spinDuration = 5000;
-
-            tape.style.transition = "none";
-            tape.style.transform = "translateX(0px)";
-            tape.innerHTML = "";
-
-            const generatedItems = [];
-            for (let i = 0; i < 80; i++) {
-                const item = getRandomItem();
-                generatedItems.push(item);
-                tape.appendChild(createCardElement(item));
-            }
-
-            const winningIndex = 70;
-            const winningItem = generatedItems[winningIndex];
-
-            const containerWidth = roulette.clientWidth;
-            const randomOffset = Math.floor(Math.random() * 30) - 15;
-            const targetX = -(winningIndex * cardWidth - (containerWidth / 2) + (cardWidth / 2) + randomOffset);
-
-            let tickCount = 0;
-            const maxTicks = 28;
-            const tickInterval = setInterval(() => {
-                playTickSound();
-                tickCount++;
-                if (tickCount >= maxTicks) clearInterval(tickInterval);
-            }, 170);
-
-            setTimeout(() => {
-                tape.style.transition = `transform ${spinDuration / 1000}s cubic-bezier(0.1, 0.85, 0.15, 1.02)`;
-                tape.style.transform = `translateX(${targetX}px)`;
-            }, 50);
-
-            setTimeout(() => {
-                stats.total = (stats.total || 0) + 1;
-                stats[winningItem.rarity] = (stats[winningItem.rarity] || 0) + 1;
-                localStorage.setItem('buba_stats_v10', JSON.stringify(stats));
-
-                inventory[winningItem.id] = (inventory[winningItem.id] || 0) + 1;
-                localStorage.setItem('buba_inventory_v10', JSON.stringify(inventory));
-                
-                renderCatalog();
-                playWinSound(winningItem.rarity);
-                triggerEffects(winningItem.rarity);
-
-                if (winMessage) {
-                    winMessage.innerText = `Вам выпало: ${winningItem.name} ${winningItem.icon}`;
-                    winMessage.style.color = winningItem.rarity === 'secret' ? '#00ffcc' : winningItem.color;
-                    winMessage.style.transform = "scale(1.1)";
-                    setTimeout(() => { winMessage.style.transform = "scale(1)"; }, 300);
-                }
-                isSpinning = false;
-                spinBtn.disabled = false;
-            }, spinDuration + 50);
-        }
-
-        /* УПРАВЛЕНИЕ КАСТОМНЫМ ОКОШКОМ СБРОСА */
-        function openResetModal(e) {
-            if (e) e.preventDefault();
-            document.getElementById('reset-modal').classList.add('active');
-        }
-
-        function closeResetModal() {
-            document.getElementById('reset-modal').classList.remove('active');
-        }
-
-        function confirmResetProgress() {
-            localStorage.removeItem('buba_inventory_v10');
-            localStorage.removeItem('buba_stats_v10');
-            localStorage.removeItem('buba_ach_v10');
-            localStorage.removeItem('buba_victory_v10');
-            inventory = {};
-            stats = { total: 0, common: 0, rare: 0, epic: 0, legendary: 0, mystic: 0, secret: 0 };
-            unlockedAch = [];
-            victoryTriggered = false;
-            if (winMessage) winMessage.innerText = "";
-            renderCatalog();
-            closeResetModal();
-            toggleSidebar();
-        }
-
-        /* КАСТОМНЫЙ ЭКСПОРТ/ИМПОРТ */
-        function closeIOModal() {
-            document.getElementById('io-modal').classList.remove('active');
-        }
-
-        function exportData(e) {
-            if (e) e.preventDefault();
-            const invArr = items.map(i => inventory[i.id] || 0);
-            const statsArr = [stats.total||0, stats.common||0, stats.rare||0, stats.epic||0, stats.legendary||0, stats.mystic||0, stats.secret||0];
-            const achArr = achievementsList.map(a => unlockedAch.includes(a.id) ? 1 : 0);
-
-            const rawString = `${invArr.join(',')}|${statsArr.join(',')}|${achArr.join('')}`;
-            const encodedData = btoa(rawString);
-
-            document.getElementById('io-modal-icon').innerText = '📤';
-            document.getElementById('io-modal-title').innerText = 'ЭКСПОРТ ДАННЫХ';
-            document.getElementById('io-modal-desc').innerText = 'Скопируйте ваш код сохранения:';
-            const input = document.getElementById('io-modal-input');
-            input.value = encodedData;
-            input.removeAttribute('placeholder');
-            input.readOnly = true;
-
-            const actionBtn = document.getElementById('io-modal-action-btn');
-            actionBtn.innerText = 'Скопировать';
-            actionBtn.onclick = () => {
-                input.select();
-                navigator.clipboard.writeText(encodedData);
-                actionBtn.innerText = 'Скопировано!';
-                setTimeout(closeIOModal, 1200);
+            const saveData = {
+                collection: unlockedItems,
+                counts: itemCounts,
+                achievements: unlockedAch,
+                spins: totalSpins,
+                coins: coins,
+                luckSpins: luckSpinsLeft,
+                rarityStats: rarityStats
             };
-
-            document.getElementById('io-modal').classList.add('active');
+            document.getElementById('exportInput').value = btoa(JSON.stringify(saveData));
+            document.getElementById('dataModal').style.display = 'flex';
         }
 
-        function importData(e) {
-            if (e) e.preventDefault();
-            document.getElementById('io-modal-icon').innerText = '📥';
-            document.getElementById('io-modal-title').innerText = 'ИМПОРТ ДАННЫХ';
-            document.getElementById('io-modal-desc').innerText = 'Вставьте ваш код сохранения в поле ниже:';
-            const input = document.getElementById('io-modal-input');
-            input.value = '';
-            input.placeholder = 'Вставьте код сюди...';
-            input.readOnly = false;
+        function copyExportCode() {
+            const input = document.getElementById('exportInput');
+            input.select();
+            document.execCommand('copy');
+            alert('Код сохранения скопирован в буфер обмена!');
+            unlockSingleAch("export_code");
+        }
 
-            const actionBtn = document.getElementById('io-modal-action-btn');
-            actionBtn.innerText = 'Загрузить';
-            actionBtn.onclick = () => {
-                const code = input.value.trim();
-                if (!code) return;
-                try {
-                    const decoded = atob(code).split('|');
-                    if (decoded.length < 3) throw new Error();
+        function importProgress() {
+            const code = document.getElementById('importInput').value.trim();
+            if (!code) return;
+            try {
+                const parsed = JSON.parse(atob(code));
+                if (parsed.collection && parsed.counts) {
+                    unlockedItems = parsed.collection;
+                    itemCounts = parsed.counts;
+                    unlockedAch = parsed.achievements || [];
+                    totalSpins = parsed.spins || 0;
+                    coins = parsed.coins || 0;
+                    luckSpinsLeft = parsed.luckSpins || 0;
+                    rarityStats = parsed.rarityStats || {"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0};
 
-                    const invArr = decoded[0].split(',').map(Number);
-                    const statsArr = decoded[1].split(',').map(Number);
-                    const achStr = decoded[2];
+                    localStorage.setItem('buba_collection', JSON.stringify(unlockedItems));
+                    localStorage.setItem('buba_counts', JSON.stringify(itemCounts));
+                    localStorage.setItem('buba_achievements', JSON.stringify(unlockedAch));
+                    localStorage.setItem('buba_total_spins', totalSpins);
+                    localStorage.setItem('buba_coins', coins);
+                    localStorage.setItem('buba_luck_spins', luckSpinsLeft);
+                    localStorage.setItem('buba_rarity_stats', JSON.stringify(rarityStats));
 
-                    inventory = {};
-                    items.forEach((item, index) => {
-                        if (invArr[index] > 0) inventory[item.id] = invArr[index];
-                    });
-
-                    stats = {
-                        total: statsArr[0] || 0,
-                        common: statsArr[1] || 0,
-                        rare: statsArr[2] || 0,
-                        epic: statsArr[3] || 0,
-                        legendary: statsArr[4] || 0,
-                        mystic: statsArr[5] || 0,
-                        secret: statsArr[6] || 0
-                    };
-
-                    unlockedAch = [];
-                    achievementsList.forEach((ach, index) => {
-                        if (achStr[index] === '1') unlockedAch.push(ach.id);
-                    });
-
-                    localStorage.setItem('buba_inventory_v10', JSON.stringify(inventory));
-                    localStorage.setItem('buba_stats_v10', JSON.stringify(stats));
-                    localStorage.setItem('buba_ach_v10', JSON.stringify(unlockedAch));
-
-                    if (winMessage) winMessage.innerText = "";
-                    renderCatalog();
-                    closeIOModal();
-                    toggleSidebar();
-                } catch (err) { 
-                    alert("Ошибка! Некорректный или устаревший код сохранения."); 
+                    updateUI();
+                    alert('Прогресс успешно загружен!');
+                    closeModal('dataModal');
+                } else {
+                    alert('Неверный код прогресса!');
                 }
-            };
+            } catch (e) {
+                alert('Ошибка при импорте кода!');
+            }
+        }
 
-            document.getElementById('io-modal').classList.add('active');
+        function resetProgress() {
+            if (confirm('Вы уверены, что хотите сбросить весь свой прогресс, монеты и достижения?')) {
+                unlockedItems = [];
+                itemCounts = {};
+                unlockedAch = [];
+                totalSpins = 0;
+                coins = 0;
+                luckSpinsLeft = 0;
+                rarityStats = {"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0};
+
+                localStorage.removeItem('buba_collection');
+                localStorage.removeItem('buba_counts');
+                localStorage.removeItem('buba_achievements');
+                localStorage.removeItem('buba_total_spins');
+                localStorage.removeItem('buba_coins');
+                localStorage.removeItem('buba_luck_spins');
+                localStorage.removeItem('buba_rarity_stats');
+
+                updateUI();
+                alert('Прогресс успешно сброшен!');
+                closeModal('dataModal');
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function setTheme(themeName) {
+            currentTheme = themeName;
+            document.body.className = themeName;
+            localStorage.setItem('buba_theme', themeName);
+            closeModal('themesModal');
+            unlockSingleAch("theme_change");
         }
     </script>
 </body>
