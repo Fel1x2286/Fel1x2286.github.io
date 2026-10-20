@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUBA DROP 2</title>
     <style>
         * {
@@ -87,14 +88,15 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            padding: 20px;
+            padding: 15px;
             transition: background 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
         }
 
         .header {
             text-align: center;
-            margin-top: 10px;
-            margin-bottom: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
             position: relative;
             display: inline-block;
         }
@@ -135,20 +137,21 @@
             z-index: 1;
         }
 
-        /* Верхняя панель экономики и баффа */
         .status-bar {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .coins-display {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 800;
             background: rgba(255, 255, 255, 0.3);
-            padding: 8px 18px;
+            padding: 6px 16px;
             border-radius: 20px;
             border: 1px solid var(--win-border);
             backdrop-filter: blur(5px);
@@ -160,8 +163,8 @@
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 13px;
+            padding: 6px 14px;
+            font-size: 12px;
             font-weight: 800;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
@@ -172,11 +175,11 @@
         .luck-boost-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .luck-active-badge {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             background: linear-gradient(180deg, #10b981 0%, #059669 100%);
             color: white;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.8);
             box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
@@ -186,9 +189,10 @@
 
         .case-window {
             position: relative;
-            width: 720px;
+            width: 100%;
+            max-width: 720px;
             height: 160px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             overflow: hidden;
             background: var(--win-bg);
             border: 2px solid var(--win-border);
@@ -296,28 +300,30 @@
 
         .controls {
             display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 10px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
+            max-width: 720px;
         }
 
         .btn {
-            padding: 12px 24px;
-            font-size: 14px;
+            padding: 10px 20px;
+            font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.85);
-            border-radius: 30px;
+            border-radius: 25px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease;
         }
 
-        .spin-btn { background: var(--btn1-grad); font-size: 18px; padding: 14px 45px; }
+        .spin-btn { background: var(--btn1-grad); font-size: 16px; padding: 12px 35px; flex-grow: 1; min-width: 180px; }
         .collection-btn { background: var(--btn2-grad); }
         .achievements-btn { background: var(--btn4-grad); }
         .theme-btn { background: var(--btn3-grad); }
@@ -350,6 +356,7 @@
             gap: 15px;
             z-index: 1000;
             transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90%;
         }
         #achievement-toast.show { top: 25px; }
         .toast-icon { font-size: 32px; }
@@ -366,15 +373,17 @@
             z-index: 100;
             justify-content: center;
             align-items: center;
+            padding: 10px;
         }
 
         .modal-content {
             background: var(--modal-bg);
             border: 2px solid var(--win-border);
-            width: 850px;
-            max-height: 85vh;
+            width: 100%;
+            max-width: 850px;
+            max-height: 88vh;
             border-radius: 24px;
-            padding: 25px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -384,12 +393,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .modal-header h2 {
             color: var(--heading-col);
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 900;
             text-transform: uppercase;
         }
@@ -398,9 +407,9 @@
             background: #ff4757;
             color: white;
             border: none;
-            width: 36px; height: 36px;
+            width: 34px; height: 34px;
             border-radius: 50%;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
@@ -409,7 +418,7 @@
         .collection-grid, .achievements-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            gap: 12px;
             overflow-y: auto;
             padding-right: 5px;
         }
@@ -418,12 +427,12 @@
             background: var(--card-bg);
             border: 2px solid var(--win-border);
             border-radius: 16px;
-            padding: 12px 10px;
+            padding: 10px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            height: 180px;
+            height: 170px;
             justify-content: space-between;
         }
 
@@ -433,54 +442,54 @@
         }
 
         .collection-item img {
-            width: 75px; height: 75px;
+            width: 65px; height: 65px;
             object-fit: cover;
             border-radius: 12px;
             border: 2px solid #fff;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        .lock-icon { font-size: 40px; margin: 15px 0; opacity: 0.5; }
+        .lock-icon { font-size: 35px; margin: 12px 0; opacity: 0.5; }
 
         .collection-item span.item-title {
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-col);
             font-weight: 700;
-            max-height: 35px;
+            max-height: 30px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
 
-        .count-badge { font-size: 14px; font-weight: 900; color: var(--p-col); letter-spacing: 0.5px; }
+        .count-badge { font-size: 13px; font-weight: 900; color: var(--p-col); letter-spacing: 0.5px; }
 
         .achievement-card {
             background: var(--card-bg);
             border: 2px solid var(--win-border);
             border-radius: 16px;
-            padding: 14px 10px;
+            padding: 12px 8px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             justify-content: space-between;
-            min-height: 140px;
+            min-height: 130px;
         }
         .achievement-card.locked { opacity: 0.45; filter: grayscale(1); }
-        .ach-icon { font-size: 36px; margin-bottom: 5px; }
-        .ach-title { font-size: 12px; font-weight: 800; color: var(--text-col); margin-bottom: 4px; }
-        .ach-desc { font-size: 10px; color: var(--p-col); font-weight: 600; line-height: 1.2; }
+        .ach-icon { font-size: 32px; margin-bottom: 4px; }
+        .ach-title { font-size: 11px; font-weight: 800; color: var(--text-col); margin-bottom: 2px; }
+        .ach-desc { font-size: 9px; color: var(--p-col); font-weight: 600; line-height: 1.1; }
 
-        .stats { font-weight: 800; color: var(--p-col); margin-bottom: 10px; font-size: 14px; }
+        .stats { font-weight: 800; color: var(--p-col); margin-bottom: 10px; font-size: 13px; }
 
-        .themes-list { display: flex; flex-direction: column; gap: 12px; }
+        .themes-list { display: flex; flex-direction: column; gap: 10px; }
 
         .theme-option {
             background: var(--card-bg);
             border: 2px solid var(--win-border);
             border-radius: 16px;
-            padding: 16px 20px;
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -488,41 +497,40 @@
             transition: all 0.2s;
         }
         .theme-option:hover { filter: brightness(1.1); transform: translateX(4px); }
-        .theme-option span { font-size: 16px; font-weight: 800; color: var(--text-col); text-transform: uppercase; }
+        .theme-option span { font-size: 14px; font-weight: 800; color: var(--text-col); text-transform: uppercase; }
 
-        /* Разделы модалки данных и статистики */
-        .data-section { display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding-right: 5px; }
+        .data-section { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; padding-right: 5px; }
         
         .stat-block {
             background: var(--card-bg);
             border: 1px solid var(--win-border);
             border-radius: 16px;
-            padding: 12px 16px;
+            padding: 10px 14px;
         }
         .stat-block h3 {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 900;
             color: var(--heading-col);
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .stat-row {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
-            padding: 4px 0;
+            padding: 3px 0;
             border-bottom: 1px dashed rgba(255,255,255,0.2);
         }
         .stat-row:last-child { border-bottom: none; }
 
         .progress-bar-bg {
             width: 100%;
-            height: 16px;
+            height: 14px;
             background: rgba(0,0,0,0.15);
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 6px;
+            margin-top: 5px;
             border: 1px solid var(--win-border);
         }
         .progress-bar-fill {
@@ -532,11 +540,11 @@
             transition: width 0.4s ease;
         }
 
-        .data-box { display: flex; flex-direction: column; gap: 6px; }
-        .data-box label { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--heading-col); }
+        .data-box { display: flex; flex-direction: column; gap: 4px; }
+        .data-box label { font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--heading-col); }
         .data-input {
             width: 100%;
-            padding: 8px 12px;
+            padding: 7px 10px;
             border-radius: 10px;
             border: 2px solid var(--win-border);
             background: rgba(255,255,255,0.2);
@@ -552,65 +560,112 @@
             cursor: pointer;
             color: white;
             text-transform: uppercase;
-            font-size: 11px;
+            font-size: 10px;
         }
         .btn-blue { background: #0072ff; }
         .btn-red { background: #ff4757; }
-/* ========================================================== */
-/* УНИВЕРСАЛЬНАЯ АДАПТИВНОСТЬ ПОД ЭКРАНЫ ТЕЛЕФОНОВ            */
-/* ========================================================== */
-@media screen and (max-width: 768px) {
-    body {
-        padding: 6px;
-    }
 
-    .header h1 {
-        font-size: clamp(26px, 7vw, 36px);
-    }
+        /* ИДЕАЛЬНЫЙ АДАПТИВ ПОД ТЕЛЕФОНЫ И ЭКРАНЫ */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 6px;
+                justify-content: flex-start;
+            }
 
-    .header-bg-number {
-        font-size: 60px;
-    }
+            .header {
+                margin-top: 2px;
+                margin-bottom: 8px;
+            }
 
-    .case-window {
-        width: 100% !important;
-        max-width: 100%;
-        height: 130px;
-    }
+            .header h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
 
-    .card {
-        min-width: 90px;
-        height: 130px;
-    }
+            .header-bg-number {
+                font-size: 70px;
+            }
 
-    .card img {
-        width: 50px;
-        height: 50px;
-    }
+            .header p {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
 
-    .controls {
-        flex-direction: column;
-        gap: 8px;
-        width: 100%;
-    }
+            .case-window {
+                width: 100% !important;
+                max-width: 100%;
+                height: 130px;
+                margin-bottom: 10px;
+            }
 
-    .spin-btn {
-        width: 100%;
-        font-size: 16px;
-        padding: 12px;
-    }
+            .card {
+                min-width: 90px;
+                height: 130px;
+                padding: 6px 4px;
+            }
 
-    .modal-content {
-        width: 95% !important;
-        max-height: 88vh;
-        padding: 15px 10px;
-    }
+            .card img {
+                width: 50px;
+                height: 50px;
+            }
 
-    .collection-grid, .achievements-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px;
-    }
-}
+            .card span.card-name {
+                font-size: 8px;
+                max-height: 30px;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                gap: 6px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .coins-display, .luck-boost-btn, .luck-active-badge {
+                width: 100%;
+                text-align: center;
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 6px;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 10px;
+                font-size: 12px;
+                text-align: center;
+            }
+
+            .spin-btn {
+                font-size: 15px;
+                padding: 12px;
+            }
+
+            .modal {
+                padding: 5px;
+            }
+
+            .modal-content {
+                width: 100% !important;
+                max-width: 100% !important;
+                max-height: 92vh;
+                padding: 12px 8px;
+            }
+
+            .collection-grid, .achievements-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px;
+            }
+
+            .collection-item {
+                height: 160px;
+            }
+        }
     </style>
 </head>
 <body class="theme-aero">
@@ -657,7 +712,7 @@
                 <h2>Журнал коллекции</h2>
                 <button class="close-btn" onclick="closeModal('collectionModal')">✕</button>
             </div>
-            <div class="stats" id="collectionStats">Открыто: 0 / 51</div>
+            <div class="stats" id="collectionStats">Открыто: 0 / 65</div>
             <div class="collection-grid" id="collectionGrid"></div>
         </div>
     </div>
@@ -669,7 +724,7 @@
                 <h2>Достижения</h2>
                 <button class="close-btn" onclick="closeModal('achievementsModal')">✕</button>
             </div>
-            <div class="stats" id="achievementsStats">Выполнено: 0 / 25</div>
+            <div class="stats" id="achievementsStats">Выполнено: 0 / 32</div>
             <div class="achievements-grid" id="achievementsGrid"></div>
         </div>
     </div>
@@ -723,8 +778,8 @@
                     <h3>📈 Подробная статистика</h3>
                     <div class="stat-row"><span>Всего прокруток:</span> <span id="statTotalSpins">0</span></div>
                     <div class="stat-row"><span>Баланс монет:</span> <span id="statCoins">0 🪙</span></div>
-                    <div class="stat-row"><span>Собрано предметов:</span> <span id="statCollection">0 / 51</span></div>
-                    <div class="stat-row"><span>Выполнено ачивок:</span> <span id="statAchievements">0 / 25</span></div>
+                    <div class="stat-row"><span>Собрано предметов:</span> <span id="statCollection">0 / 65</span></div>
+                    <div class="stat-row"><span>Выполнено ачивок:</span> <span id="statAchievements">0 / 32</span></div>
                 </div>
 
                 <div class="stat-block">
@@ -805,7 +860,6 @@
             secret: 'Секретный'
         };
 
-        // Стандартные веса шансов
         const baseRarityWeights = {
             common: 50,
             rare: 28,
@@ -815,14 +869,13 @@
             secret: 0.5
         };
 
-        // Повышенные веса шансов при покупке УДАЧИ
         const boostedRarityWeights = {
-            common: 20,
-            rare: 35,
-            epic: 25,
-            legendary: 12,
-            mythic: 6,
-            secret: 2
+            common: 0,
+            rare: 0,
+            epic: 60,
+            legendary: 25,
+            mythic: 12,
+            secret: 3
         };
 
         const items = [
@@ -846,48 +899,62 @@
             { id: 14, name: "Буба с перчаткой", file: "Drops/IMG_7615.PNG", rarity: "rare" },
             { id: 15, name: "Буба из фореста", file: "Drops/IMG_7636.PNG", rarity: "rare" },
             { id: 16, name: "ПейДей Бубы", file: "Drops/IMG_7647.PNG", rarity: "rare" },
+            { id: 17, name: "Чёрные свинки", file: "Drops/IMG_7632.PNG", rarity: "rare" }, // Обновлено
+            { id: 18, name: "Бомба в шкафу", file: "Drops/IMG_7634.PNG", rarity: "rare" }, // Обновлено
+            { id: 19, name: "Легионеры", file: "Drops/IMG_7638.PNG", rarity: "rare" },
 
             // Эпические
-            { id: 17, name: "Буба два раза", file: "Drops/IMG_7614.PNG", rarity: "epic" },
-            { id: 18, name: "Ryzen, родненький", file: "Drops/IMG_7616.PNG", rarity: "epic" },
-            { id: 19, name: "Поздравление буб", file: "Drops/IMG_7625.PNG", rarity: "epic" },
-            { id: 20, name: "Компьютер бубы", file: "Drops/IMG_7639.PNG", rarity: "epic" },
-            { id: 21, name: "Уголок даунизма", file: "Drops/IMG_7640.PNG", rarity: "epic" },
-            { id: 22, name: "Платформа с шариками", file: "Drops/IMG_7643.PNG", rarity: "epic" },
-            { id: 23, name: "Духи с запахом бубы", file: "Drops/IMG_7650.PNG", rarity: "epic" },
-            { id: 24, name: "ВТБ буба", file: "Drops/IMG_7659.PNG", rarity: "epic" },
-            { id: 25, name: "Буба начальник смены", file: "Drops/IMG_7663.PNG", rarity: "epic" },
-            { id: 26, name: "МОИ КУБИКИ СУКА", file: "Drops/IMG_7618.PNG", rarity: "epic" },
-            { id: 27, name: "Трубка капитана бубы", file: "Drops/IMG_7626.PNG", rarity: "epic" },
-            { id: 28, name: "Подлодка \"Бiмба\"", file: "Drops/IMG_7627.PNG", rarity: "epic" },
-            { id: 29, name: "Дом бубы", file: "Drops/IMG_7630.PNG", rarity: "epic" },
-            { id: 30, name: "Боевой оркестр буб", file: "Drops/IMG_7645.PNG", rarity: "epic" },
-            { id: 31, name: "Буба Террорист", file: "Drops/IMG_7653.PNG", rarity: "epic" },
+            { id: 20, name: "Буба два раза", file: "Drops/IMG_7614.PNG", rarity: "epic" },
+            { id: 21, name: "Ryzen, родненький", file: "Drops/IMG_7616.PNG", rarity: "epic" },
+            { id: 22, name: "Поздравление буб", file: "Drops/IMG_7625.PNG", rarity: "epic" },
+            { id: 23, name: "Компьютер бубы", file: "Drops/IMG_7639.PNG", rarity: "epic" },
+            { id: 24, name: "Уголок даунизма", file: "Drops/IMG_7640.PNG", rarity: "epic" },
+            { id: 25, name: "Платформа с шариками", file: "Drops/IMG_7643.PNG", rarity: "epic" },
+            { id: 26, name: "Духи с запахом бубы", file: "Drops/IMG_7650.PNG", rarity: "epic" },
+            { id: 27, name: "ВТБ буба", file: "Drops/IMG_7659.PNG", rarity: "epic" },
+            { id: 28, name: "Буба начальник смены", file: "Drops/IMG_7663.PNG", rarity: "epic" },
+            { id: 29, name: "МОИ КУБИКИ СУКА", file: "Drops/IMG_7618.PNG", rarity: "epic" },
+            { id: 30, name: "Трубка капитана бубы", file: "Drops/IMG_7626.PNG", rarity: "epic" },
+            { id: 31, name: "Подлодка \"Бiмба\"", file: "Drops/IMG_7627.PNG", rarity: "epic" },
+            { id: 32, name: "Дом бубы", file: "Drops/IMG_7630.PNG", rarity: "epic" },
+            { id: 33, name: "Боевой оркестр буб", file: "Drops/IMG_7645.PNG", rarity: "epic" },
+            { id: 34, name: "Буба Террорист", file: "Drops/IMG_7653.PNG", rarity: "epic" },
+            { id: 35, name: "Сгоревший дом бубы", file: "Drops/IMG_7830.PNG", rarity: "epic" },
+            { id: 36, name: "Отчим Бубы", file: "Drops/IMG_7833.PNG", rarity: "epic" },
+            { id: 37, name: "Привет Мотя", file: "Drops/IMG_7837.PNG", rarity: "epic" },
+            { id: 38, name: "Обконченный буба", file: "Drops/IMG_7843.PNG", rarity: "epic" },
 
             // Легендарные
-            { id: 32, name: "Спермитто Дилдако", file: "Drops/IMG_7613.PNG", rarity: "legendary" },
-            { id: 33, name: "Долг за нефть", file: "Drops/IMG_7619.PNG", rarity: "legendary" },
-            { id: 34, name: "Кейс с деньгами", file: "Drops/IMG_7624.PNG", rarity: "legendary" },
-            { id: 35, name: "Урановая палочка", file: "Drops/IMG_7629.PNG", rarity: "legendary" },
-            { id: 36, name: "КулbК1д", file: "Drops/IMG_7635.PNG", rarity: "legendary" },
-            { id: 37, name: "Мачета бубы слешера", file: "Drops/IMG_7637.PNG", rarity: "legendary" },
-            { id: 38, name: "Почему он круглый", file: "Drops/IMG_7658.PNG", rarity: "legendary" },
-            { id: 39, name: "Партия Котости и Бубы", file: "Drops/IMG_7660.PNG", rarity: "legendary" },
-            { id: 40, name: "Порветный туз", file: "Drops/IMG_7641.PNG", rarity: "legendary" },
-            { id: 41, name: "Кирасасир", file: "Drops/IMG_7646.PNG", rarity: "legendary" },
-            { id: 42, name: "БТР и буба", file: "Drops/IMG_7657.PNG", rarity: "legendary" },
+            { id: 39, name: "Спермитто Дилдако", file: "Drops/IMG_7613.PNG", rarity: "legendary" },
+            { id: 40, name: "Долг за нефть", file: "Drops/IMG_7619.PNG", rarity: "legendary" },
+            { id: 41, name: "Кейс с деньгами", file: "Drops/IMG_7624.PNG", rarity: "legendary" },
+            { id: 42, name: "Урановая палочка", file: "Drops/IMG_7629.PNG", rarity: "legendary" },
+            { id: 43, name: "КулbК1д", file: "Drops/IMG_7635.PNG", rarity: "legendary" },
+            { id: 44, name: "Мачета бубы слешера", file: "Drops/IMG_7637.PNG", rarity: "legendary" },
+            { id: 45, name: "Почему он круглый", file: "Drops/IMG_7658.PNG", rarity: "legendary" },
+            { id: 46, name: "Партия Котости и Бубы", file: "Drops/IMG_7660.PNG", rarity: "legendary" },
+            { id: 47, name: "Порветный туз", file: "Drops/IMG_7641.PNG", rarity: "legendary" },
+            { id: 48, name: "Кирасасир", file: "Drops/IMG_7646.PNG", rarity: "legendary" },
+            { id: 49, name: "БТР и буба", file: "Drops/IMG_7657.PNG", rarity: "legendary" },
+            { id: 50, name: "Загрязненная АЭС", file: "Drops/IMG_7831.PNG", rarity: "legendary" },
+            { id: 51, name: "Так, так, так. Салфетки", file: "Drops/IMG_7835.PNG", rarity: "legendary" },
+            { id: 52, name: "Мясной отдел Светофора", file: "Drops/IMG_7839.PNG", rarity: "legendary" },
+            { id: 53, name: "Зелёный слоник", file: "Drops/IMG_7842.PNG", rarity: "legendary" },
 
             // Мифические
-            { id: 43, name: "Инвалидная коляска бубы", file: "Drops/IMG_7620.PNG", rarity: "mythic" },
-            { id: 44, name: "Детский стендап", file: "Drops/IMG_7631.PNG", rarity: "mythic" },
-            { id: 45, name: "Свити фокс и зайка джуди хопс", file: "Drops/IMG_7644.PNG", rarity: "mythic" },
-            { id: 46, name: "я УЖЕ КРАСНЫЙ", file: "Drops/IMG_7656.PNG", rarity: "mythic" },
-            { id: 47, name: "\"Льюис\"", file: "Drops/IMG_7642.PNG", rarity: "mythic" },
-            { id: 48, name: "Ложка бубы", file: "Drops/IMG_7648.PNG", rarity: "mythic" },
-            { id: 49, name: "Прости сыр может спутали меня вы с кем", file: "Drops/IMG_7649.PNG", rarity: "mythic" },
+            { id: 54, name: "Инвалидная коляска бубы", file: "Drops/IMG_7620.PNG", rarity: "mythic" },
+            { id: 55, name: "Детский стендап", file: "Drops/IMG_7631.PNG", rarity: "mythic" },
+            { id: 56, name: "Свити фокс и зайка джуди хопс", file: "Drops/IMG_7644.PNG", rarity: "mythic" },
+            { id: 57, name: "я УЖЕ КРАСНЫЙ", file: "Drops/IMG_7656.PNG", rarity: "mythic" },
+            { id: 58, name: "\"Льюис\"", file: "Drops/IMG_7642.PNG", rarity: "mythic" },
+            { id: 59, name: "Ложка бубы", file: "Drops/IMG_7648.PNG", rarity: "mythic" },
+            { id: 60, name: "Прости сыр может спутали меня вы с кем", file: "Drops/IMG_7649.PNG", rarity: "mythic" },
+            { id: 61, name: "Нож \"БУБА ДРОП\"", file: "Drops/IMG_7840.PNG", rarity: "mythic" },
+            { id: 62, name: "√81/11", file: "Drops/IMG_7841.PNG", rarity: "mythic" },
 
             // Секретные
-            { id: 50, name: "тiкi тiкi тiкi", file: "Drops/IMG_7662.PNG", rarity: "secret" }
+            { id: 63, name: "тiкi тiкi тiкi", file: "Drops/IMG_7662.PNG", rarity: "secret" },
+            { id: 64, name: "RIP SORA 2", file: "Drops/IMG_7836.PNG", rarity: "secret" }
         ];
 
         const achievementsList = [
@@ -901,8 +968,8 @@
             { id: "col_1", title: "Начало коллекции", desc: "Откройте свой первый уникальный предмет", icon: "📦" },
             { id: "col_10", title: "Коллекционер-новичок", desc: "Соберите 10 уникальных предметов", icon: "🎒" },
             { id: "col_25", title: "Половина пути", desc: "Соберите 25 уникальных предметов", icon: "🏆" },
-            { id: "col_45", title: "Почти всё!", desc: "Соберите 45 уникальных предметов", icon: "⭐" },
-            { id: "col_all", title: "Властелин Буб", desc: "Соберите ВСЕ 51 предмет в коллекции!", icon: "🌟" },
+            { id: "col_55", title: "Почти всё!", desc: "Соберите 55 уникальных предметов", icon: "⭐" },
+            { id: "col_all", title: "Властелин Буб", desc: "Соберите ВСЕ 65 предметов в коллекции!", icon: "🌟" },
 
             { id: "drop_common", title: "Серость", desc: "Выбейте любой обычный предмет", icon: "⚪" },
             { id: "drop_rare", title: "Уже что-то", desc: "Выбейте редкий предмет", icon: "🔵" },
@@ -919,7 +986,16 @@
             { id: "export_code", title: "Бэкапщик", desc: "Скопируйте код экспорта прогресса", icon: "💾" },
             { id: "perfume", title: "Парфюмер", desc: "Выбейте \"Духи с запахом бубы\"", icon: "🧪" },
             { id: "ryzen", title: "Сборщик ПК", desc: "Выбейте \"Ryzen, родненький\"", icon: "💻" },
-            { id: "standup", title: "Юморист", desc: "Выбейте \"Детский стендап\"", icon: "🎤" }
+            { id: "standup", title: "Юморист", desc: "Выбейте \"Детский стендап\"", icon: "🎤" },
+
+            // Новые 7 достижений
+            { id: "svetofor_king", title: "Закулисье Светофора", desc: "Выбейте легендарный 'Мясной отдел Светофора'", icon: "🥩" },
+            { id: "buba_family", title: "Семейный альбом", desc: "Соберите 'Отчима Бубы' и 'Дом бубы'", icon: "👨‍👩‍👧‍👦" },
+            { id: "nuclear_danger", title: "Радиационный фон", desc: "Выбейте 'Загрязненную АЭС'", icon: "☢️" },
+            { id: "math_genius", title: "Инженерный расчет", desc: "Выбейте мифический предмет '√81/11'", icon: "📐" },
+            { id: "luck_investor", title: "Любимец Фортуны", desc: "Активируйте 'Удачу' 5 раз", icon: "🍀" },
+            { id: "rich_collector", title: "Магнат рулетки", desc: "Накопите 500 монет на балансе", icon: "💰" },
+            { id: "secret_hunter", title: "Агент ???", desc: "Найдите и выбейте секретный предмет", icon: "🕵️‍♂️" }
         ];
 
         let unlockedItems = JSON.parse(localStorage.getItem('buba_collection') || '[]');
@@ -928,6 +1004,7 @@
         let totalSpins = parseInt(localStorage.getItem('buba_total_spins') || '0');
         let coins = parseInt(localStorage.getItem('buba_coins') || '0');
         let luckSpinsLeft = parseInt(localStorage.getItem('buba_luck_spins') || '0');
+        let luckPurchasedCount = parseInt(localStorage.getItem('buba_luck_purchased') || '0');
         let rarityStats = JSON.parse(localStorage.getItem('buba_rarity_stats') || '{"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0}');
         let currentTheme = localStorage.getItem('buba_theme') || 'theme-aero';
         document.body.className = currentTheme;
@@ -962,8 +1039,14 @@
             if (coins >= 50 && luckSpinsLeft === 0) {
                 coins -= 50;
                 luckSpinsLeft = 3;
+                luckPurchasedCount++;
+                localStorage.setItem('buba_luck_purchased', luckPurchasedCount);
+                
+                if (luckPurchasedCount >= 5) unlockSingleAch("luck_investor");
+                if (coins >= 500) unlockSingleAch("rich_collector");
+
                 updateUI();
-                alert('✨ Удача активирована! На следующие 3 прокрутки шансы на редкие вещи значительно повышены!');
+                alert('✨ Удача активирована! Мусор и редкий хлам полностью убраны из рулетки на следующие 3 прокрутки. Только эпики и выше!');
             }
         }
 
@@ -1023,14 +1106,16 @@
             if (colLen >= 1) grant("col_1");
             if (colLen >= 10) grant("col_10");
             if (colLen >= 25) grant("col_25");
-            if (colLen >= 45) grant("col_45");
-            if (colLen >= 51) grant("col_all");
+            if (colLen >= 55) grant("col_55");
+            if (colLen >= items.length) grant("col_all");
 
             Object.values(itemCounts).forEach(cnt => {
                 if (cnt >= 5) grant("dup_5");
                 if (cnt >= 10) grant("dup_10");
                 if (cnt >= 25) grant("dup_25");
             });
+
+            if (coins >= 500) grant("rich_collector");
         }
 
         function showToast(ach) {
@@ -1060,11 +1145,18 @@
                 if (item.rarity === "epic") unlockSingleAch("drop_epic");
                 if (item.rarity === "legendary") unlockSingleAch("drop_legendary");
                 if (item.rarity === "mythic") unlockSingleAch("drop_mythic");
-                if (item.rarity === "secret") unlockSingleAch("drop_secret");
+                if (item.rarity === "secret") {
+                    unlockSingleAch("drop_secret");
+                    unlockSingleAch("secret_hunter");
+                }
 
-                if (item.id === 23) unlockSingleAch("perfume");
-                if (item.id === 18) unlockSingleAch("ryzen");
-                if (item.id === 44) unlockSingleAch("standup");
+                if (item.id === 26) unlockSingleAch("perfume");
+                if (item.id === 21) unlockSingleAch("ryzen");
+                if (item.id === 55) unlockSingleAch("standup");
+                if (item.id === 52) unlockSingleAch("svetofor_king");
+                if (item.id === 50) unlockSingleAch("nuclear_danger");
+                if (item.id === 62) unlockSingleAch("math_genius");
+                if (unlockedItems.includes(36) && unlockedItems.includes(32)) unlockSingleAch("buba_family");
             }
 
             checkAchievements();
@@ -1097,7 +1189,7 @@
 
             setTimeout(() => {
                 const cardWidth = 115;
-                const windowWidth = 720;
+                const windowWidth = Math.min(window.innerWidth - 30, 720);
                 
                 const targetLeft = -(winningIndex * cardWidth) + (windowWidth / 2) - (cardWidth / 2);
                 const randomOffset = (Math.random() - 0.5) * 40;
@@ -1186,7 +1278,6 @@
         }
 
         function openDataModal() {
-            // Расчет статистики
             const colPercent = (unlockedItems.length / items.length) * 100;
             const achPercent = (unlockedAch.length / achievementsList.length) * 100;
             const totalPercent = Math.round((colPercent + achPercent) / 2);
@@ -1213,6 +1304,7 @@
                 spins: totalSpins,
                 coins: coins,
                 luckSpins: luckSpinsLeft,
+                luckPurchased: luckPurchasedCount,
                 rarityStats: rarityStats
             };
             document.getElementById('exportInput').value = btoa(JSON.stringify(saveData));
@@ -1239,6 +1331,7 @@
                     totalSpins = parsed.spins || 0;
                     coins = parsed.coins || 0;
                     luckSpinsLeft = parsed.luckSpins || 0;
+                    luckPurchasedCount = parsed.luckPurchased || 0;
                     rarityStats = parsed.rarityStats || {"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0};
 
                     localStorage.setItem('buba_collection', JSON.stringify(unlockedItems));
@@ -1247,6 +1340,7 @@
                     localStorage.setItem('buba_total_spins', totalSpins);
                     localStorage.setItem('buba_coins', coins);
                     localStorage.setItem('buba_luck_spins', luckSpinsLeft);
+                    localStorage.setItem('buba_luck_purchased', luckPurchasedCount);
                     localStorage.setItem('buba_rarity_stats', JSON.stringify(rarityStats));
 
                     updateUI();
@@ -1268,6 +1362,7 @@
                 totalSpins = 0;
                 coins = 0;
                 luckSpinsLeft = 0;
+                luckPurchasedCount = 0;
                 rarityStats = {"common":0,"rare":0,"epic":0,"legendary":0,"mythic":0,"secret":0};
 
                 localStorage.removeItem('buba_collection');
@@ -1276,6 +1371,7 @@
                 localStorage.removeItem('buba_total_spins');
                 localStorage.removeItem('buba_coins');
                 localStorage.removeItem('buba_luck_spins');
+                localStorage.removeItem('buba_luck_purchased');
                 localStorage.removeItem('buba_rarity_stats');
 
                 updateUI();
