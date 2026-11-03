@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="classic">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#070a12">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>BUBA DROP — крути кейсы, собирай Бубу</title>
+  <meta name="description" content="BUBA DROP: 88 абсурдных предметов, 8 редкостей, рулетка, коллекция, 30 достижений и 11 тем. Крути кейсы и собирай Бубу.">
+  <link rel="icon" href="assets/favicon.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=7">
+</head>
+<body data-theme="classic">
+  <canvas class="fx" id="fx" aria-hidden="true"></canvas>
+  <div class="bg-wash" aria-hidden="true"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#spin" data-nav="spin" aria-label="BUBA DROP — на главную">
+        <span class="brand__mark"><img src="assets/mascot.webp" alt=""></span>
+        <span class="brand__word">BUBA<span>DROP</span><small>REMADE</small></span>
+      </a>
+
+      <nav class="nav" id="main-nav" aria-label="Разделы">
+        <button class="nav__item is-active" data-nav="spin">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5 12 4l8 4.5v9L12 22l-8-4.5v-9Z"/><path d="M4 8.5 12 13l8-4.5M12 13v9"/></svg>
+          <span>Крутка</span>
+        </button>
+        <button class="nav__item" data-nav="collection">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+          <span>Коллекция</span>
+        </button>
+        <button class="nav__item" data-nav="achievements">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4Z"/><path d="M8 6H5v2a3 3 0 0 0 3 3M16 6h3v2a3 3 0 0 1-3 3M12 13v5M8 21h8M10 18h4"/></svg>
+          <span>Достижения</span>
+        </button>
+        <button class="nav__item" data-nav="stats">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          <span>Статистика</span>
+        </button>
+        <button class="nav__item" data-nav="themes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.5a2.5 2.5 0 0 0 0-5H13a2 2 0 0 1 0-4h4a4 4 0 0 0 4-4c0-3-4-5-9-5Z"/><circle cx="7.5" cy="9.5" r="1"/><circle cx="10" cy="6.5" r="1"/><circle cx="15" cy="6.5" r="1"/></svg>
+          <span>Темы</span>
+        </button>
+      </nav>
+
+      <div class="hud">
+        <div class="hud__stat" title="Буба-коины">
+          <span class="coin">B</span>
+          <b id="hud-coins">0</b>
+        </div>
+        <div class="hud__stat hud__stat--level" title="Уровень">
+          <span class="lv">LV</span>
+          <b id="hud-level">1</b>
+        </div>
+        <button class="icon-btn" id="sound-btn" title="Звук" aria-label="Переключить звук">
+          <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18 6a8 8 0 0 1 0 12"/></svg>
+          <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+        </button>
+        <button class="icon-btn" id="settings-btn" title="Настройки" aria-label="Настройки">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- ================= КРУТКА ================= -->
+      <section class="view is-active" id="view-spin" data-view="spin">
+        <div class="hero">
+          <div class="case-stage">
+            <div class="case-halo"></div>
+            <div class="case" id="case-box">
+              <div class="case__lid">
+                <span class="case__hinge case__hinge--l"></span>
+                <span class="case__hinge case__hinge--r"></span>
+              </div>
+              <div class="case__front">
+                <div class="case__grid"></div>
+                <img class="case__mascot" src="assets/mascot.webp" alt="Сам Буба" draggable="false">
+                <div class="case__label"><b>BUBA</b><span>DROP</span><small>REMADE</small></div>
+                <i class="case__screw case__screw--tl"></i>
+                <i class="case__screw case__screw--tr"></i>
+                <i class="case__screw case__screw--bl"></i>
+                <i class="case__screw case__screw--br"></i>
+                <span class="case__shine"></span>
+              </div>
+              <div class="case__floor"></div>
+            </div>
+            <div class="case-caption"><span class="pulse-dot"></span> КЕЙС АКТИВЕН · 88 ПРЕДМЕТОВ</div>
+          </div>
+
+          <div class="hero__copy">
+            <div class="eyebrow"><span></span> КЕЙС №1 · ОСНОВНОЙ</div>
+            <h1>Крути, пока<br><em>Буба</em> не сжалится</h1>
+            <p class="lead">88 абсурдных предметов, 8 редкостей и один очень сомнительный шанс выбить секретку. Все шансы честно написаны ниже — ну, насколько это возможно.</p>
+
+            <div class="hero__facts">
+              <div><b>88</b><span>предметов</span></div>
+              <div><b>8</b><span>редкостей</span></div>
+              <div><b>30</b><span>достижений</span></div>
+              <div><b>11</b><span>тем</span></div>
+            </div>
+
+            <div class="spin-actions">
+              <button class="btn btn--primary btn--big" id="spin-btn">
+                <span class="btn__icon">🎰</span>
+                <span class="btn__text">Открыть кейс<small>1 прокрутка · бесплатно</small></span>
+                <span class="btn__arrow">→</span>
+              </button>
+            </div>
+
+            <div class="pity">
+              <div class="pity__head">
+                <span>Гарант эпика или выше</span>
+                <b id="pity-label">0 / 25</b>
+              </div>
+              <div class="bar"><i id="pity-bar" style="width:0%"></i></div>
+              <p>Если 25 прокруток подряд без эпика — следующий дроп будет эпическим или лучше.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="roulette panel">
+          <div class="roulette__head">
+            <div>
+              <div class="eyebrow"><span></span> ЖИВАЯ ЛЕНТА</div>
+              <h2>Что выпадет сегодня?</h2>
+            </div>
+            <div class="roulette__status" id="spin-status"><span class="pulse-dot"></span> Готов к прокрутке</div>
+          </div>
+          <div class="reel" id="reel-viewport">
+            <div class="reel__track" id="reel"></div>
+            <div class="reel__marker" aria-hidden="true"><i></i></div>
+            <div class="reel__edges" aria-hidden="true"></div>
+          </div>
+          <div class="roulette__foot">
+            <span>Маркер показывает выигрыш. Лента — просто для настроения.</span>
+            <span id="spin-count-label">Прокруток: 0</span>
+          </div>
+        </div>
+
+        <div class="dashboard">
+          <section class="panel panel--recent">
+            <div class="panel__head">
+              <div><div class="eyebrow"><span></span> ИСТОРИЯ</div><h2>Последние дропы</h2></div>
+              <span class="panel__hint" id="recent-count">0</span>
+            </div>
+            <div class="recent-list" id="recent-list"></div>
+          </section>
+
+          <section class="panel panel--rates">
+            <div class="panel__head">
+              <div><div class="eyebrow"><span></span> ЧЕСТНО</div><h2>Шансы редкостей</h2></div>
+              <span class="panel__hint">за 1 прокрутку</span>
+            </div>
+            <div class="rates" id="rates-list"></div>
+            <div class="rates__note">Секретки суммарно 0.5%. Да, это мало. Нет, мы не будем извиняться.</div>
+          </section>
+
+          <section class="panel panel--progress">
+            <div class="panel__head">
+              <div><div class="eyebrow"><span></span> ПРОГРЕСС</div><h2>Твоя Буба-империя</h2></div>
+            </div>
+            <div class="progress-tiles" id="progress-tiles"></div>
+            <button class="text-link" data-nav="collection">Открыть коллекцию <span>→</span></button>
+          </section>
+        </div>
+      </section>
+
+      <!-- ================= КОЛЛЕКЦИЯ ================= -->
+      <section class="view" id="view-collection" data-view="collection">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow"><span></span> ТВОЙ СКЛАД</div>
+            <h1>Коллекция</h1>
+            <p>Все 88 предметов: редкость, шанс и количество выбитых копий. Пока предмет не выбит, вместо картинки — карточка-загадка, а подробности открываются только после первого дропа. Бейдж ×N — всего выбито.</p>
+          </div>
+          <div class="completion">
+            <div class="completion__ring" id="collection-ring"><b id="collection-ring-label">0%</b></div>
+            <div class="completion__copy"><b id="collection-count">0 / 88</b><span>собрано</span></div>
+          </div>
+        </div>
+
+        <div class="rarity-progress" id="rarity-progress"></div>
+
+        <div class="toolbar panel">
+          <div class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <input id="collection-search" type="search" placeholder="Найти предмет..." autocomplete="off">
+            <kbd>/</kbd>
+          </div>
+          <div class="filters" id="rarity-filters"></div>
+          <label class="check"><input type="checkbox" id="owned-only"><span></span>Только выбитые</label>
+          <select id="collection-sort" class="select" aria-label="Сортировка">
+            <option value="rarity">Сначала редкие</option>
+            <option value="num">По номеру</option>
+            <option value="name">По названию</option>
+            <option value="count">По количеству</option>
+            <option value="chance">По шансу</option>
+          </select>
+        </div>
+
+        <div class="collection-grid" id="collection-grid"></div>
+        <div class="empty" id="collection-empty" hidden>
+          <span>🕳️</span>
+          <b>Ничего не найдено</b>
+          <p>Попробуй другой запрос или сбрось фильтры.</p>
+        </div>
+      </section>
+
+      <!-- ================= ДОСТИЖЕНИЯ ================= -->
+      <section class="view" id="view-achievements" data-view="achievements">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow"><span></span> СПИСОК ПОДВИГОВ</div>
+            <h1>Достижения</h1>
+            <p>30 ачивок за прокрутки, коллекцию, повторки и странные решения. Каждое даёт опыт, а некоторые открывают темы.</p>
+          </div>
+          <div class="big-fraction"><b id="ach-count">0</b><span>/ 30</span></div>
+        </div>
+
+        <div class="ach-progress panel">
+          <div class="ach-progress__top">
+            <span>Прогресс достижений</span>
+            <b id="ach-percent">0%</b>
+          </div>
+          <div class="bar bar--big"><i id="ach-bar" style="width:0%"></i></div>
+          <div class="ach-progress__bottom">
+            <span id="ach-xp-earned">0 XP получено</span>
+            <span id="ach-themes-earned">0 тем открыто</span>
+          </div>
+        </div>
+
+        <div class="toolbar toolbar--simple">
+          <div class="segmented" id="ach-filters">
+            <button class="is-active" data-ach-filter="all">Все</button>
+            <button data-ach-filter="unlocked">Открытые</button>
+            <button data-ach-filter="locked">Закрытые</button>
+          </div>
+          <span class="toolbar__hint" id="ach-hint">Показано 30 из 30</span>
+        </div>
+
+        <div class="ach-grid" id="achievements-grid"></div>
+      </section>
+
+      <!-- ================= СТАТИСТИКА ================= -->
+      <section class="view" id="view-stats" data-view="stats">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow"><span></span> ЦИФРЫ И БОЛЬ</div>
+            <h1>Статистика</h1>
+            <p>Сколько ты накрутил, что выбил и насколько глубоко ты в этом всем. Всё хранится локально в браузере.</p>
+          </div>
+          <div class="level-card">
+            <div class="level-card__badge" id="stats-level">1</div>
+            <div class="level-card__copy">
+              <b id="stats-rank">Новичок</b>
+              <span id="stats-xp">0 XP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="stats-grid"></div>
+
+        <div class="stats-columns">
+          <section class="panel">
+            <div class="panel__head">
+              <div><div class="eyebrow"><span></span> ПО РЕДКОСТЯМ</div><h2>Что и сколько выпало</h2></div>
+            </div>
+            <div class="stats-rarities" id="stats-rarities"></div>
+          </section>
+          <section class="panel">
+            <div class="panel__head">
+              <div><div class="eyebrow"><span></span> РЕКОРДЫ</div><h2>Личные достижения</h2></div>
+            </div>
+            <div class="records" id="stats-records"></div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel__head">
+            <div><div class="eyebrow"><span></span> ХРОНИКА</div><h2>История аккаунта</h2></div>
+          </div>
+          <div class="timeline" id="stats-timeline"></div>
+        </section>
+      </section>
+
+      <!-- ================= ТЕМЫ ================= -->
+      <section class="view" id="view-themes" data-view="themes">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow"><span></span> ВНЕШНИЙ ВИД</div>
+            <h1>Темы</h1>
+            <p>11 оформлений. Одно доступно сразу, остальные открываются за достижения. Тема применяется мгновенно и запоминается.</p>
+          </div>
+          <div class="big-fraction"><b id="theme-count">1</b><span>/ 11</span></div>
+        </div>
+
+        <div class="theme-grid" id="themes-grid"></div>
+
+        <div class="panel theme-note">
+          <b>Как открывать темы?</b>
+          <p>Каждая привязана к конкретному достижению. Нажми на запертую карточку — игра покажет, что нужно сделать. Открытые темы можно менять в любой момент.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__brand"><img src="assets/mascot.webp" alt=""><b>BUBA DROP</b><span>REMADE</span></div>
+      <p>Сделано ради прикола. Не является пропагандой кейсов, азартных игр и Бубы. Прогресс хранится в твоём браузере.</p>
+      <div class="footer__links"><button class="text-link" id="footer-settings">Настройки</button><span>·</span><button class="text-link" data-nav="collection">Коллекция</button><span>·</span><span>v2.0</span></div>
+    </footer>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <div class="modal-root" id="modal-root" aria-live="polite"></div>
+
+  <template id="settings-template">
+    <div class="modal modal--settings" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="modal__backdrop" data-close></div>
+      <div class="modal__card">
+        <button class="modal__close" data-close aria-label="Закрыть">×</button>
+        <div class="eyebrow"><span></span> НАСТРОЙКИ</div>
+        <h2 id="settings-title">Всё под контролем</h2>
+        <div class="settings-list">
+          <label class="settings-row">
+            <div><b>Звуки</b><span>Щелчки, фанфары и прочий аудио-мусор</span></div>
+            <input type="checkbox" id="setting-sound" class="switch-input">
+            <span class="switch-ui"></span>
+          </label>
+          <label class="settings-row">
+            <div><b>Частицы и конфетти</b><span>Красиво, но грузит слабые устройства</span></div>
+            <input type="checkbox" id="setting-particles" class="switch-input">
+            <span class="switch-ui"></span>
+          </label>
+          <label class="settings-row">
+            <div><b>Меньше движения</b><span>Отключает тряску и часть анимаций</span></div>
+            <input type="checkbox" id="setting-motion" class="switch-input">
+            <span class="switch-ui"></span>
+          </label>
+        </div>
+
+        <div class="settings-sub">
+          <h3>Сохранение</h3>
+          <p>Прогресс лежит в localStorage. Перед сбросом лучше сделать экспорт — файл можно импортировать на другом устройстве.</p>
+          <div class="settings-actions">
+            <button class="btn btn--ghost btn--sm" id="export-btn">Экспорт</button>
+            <button class="btn btn--ghost btn--sm" id="import-btn">Импорт</button>
+            <input type="file" id="import-file" accept="application/json,.json" hidden>
+            <button class="btn btn--danger btn--sm" id="reset-btn">Сбросить всё</button>
+          </div>
+          <div class="save-note" id="save-note"></div>
+        </div>
+
+        <div class="settings-sub">
+          <h3>Горячие клавиши</h3>
+          <div class="hotkeys">
+            <span><kbd>Space</kbd> крутить</span>
+            <span><kbd>1</kbd>–<kbd>5</kbd> разделы</span>
+            <span><kbd>/</kbd> поиск в коллекции</span>
+            <span><kbd>Esc</kbd> закрыть</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <noscript>
+    <div class="noscript">Для этой игры нужен JavaScript. Без него тут только Буба и пустота.</div>
+  </noscript>
+
+  <script src="js/data.js?v=7"></script>
+  <script src="js/themes.js?v=7"></script>
+  <script src="js/achievements.js?v=7"></script>
+  <script src="js/app.js?v=7"></script>
+</body>
+</html>
